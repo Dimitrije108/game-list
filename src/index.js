@@ -1,4 +1,5 @@
 import html from "./index.html";
+import './style.css';
 
 class Game {
     constructor(title, releaseDate, genre, mustPlay, completed) {
