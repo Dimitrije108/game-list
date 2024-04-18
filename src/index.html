@@ -21,6 +21,36 @@
         </div>
         <div class="content">
             <button class="add-game">+ Add Game</button>
+            <dialog class="modal" open>
+                <form id="form" method="dialog">
+                    <fieldset>
+                        <legend>Add New Game</legend>
+                        <div class="input-field">
+                            <label for="title">Title:</label>
+                            <input type="text" id="title" name="title" required>
+                        </div>
+                        <div class="input-field">
+                            <label for="release-date">Released:</label>
+                            <input type="number" id="release-date" name="release-date">
+                        </div>
+                        <div class="input-field">
+                            <label for="genre">Genre:</label>
+                            <input type="text" id="genre" name="genre">
+                        </div>
+                        <div class="input-field">
+                            <label for="completed">Completed:</label>
+                            <input type="checkbox" id="completed" name="completed">
+                        </div>
+                        <div class="input-field">
+                            <label for="must-play">Must Play:</label>
+                            <input type="checkbox" id="must-play" name="must-play">
+                        </div>
+                        <div class="submitFormBtn">
+                            <button class="submitBtn" type="submit" form="form">Add</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </dialog>
         </div>
     </div>
 </body>
