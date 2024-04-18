@@ -1,38 +1,19 @@
 import html from "./index.html";
 import './style.css';
+import { gameFormData } from "./game-form-data";
+import { Game, library } from "./add-game-logic";
 
-class Game {
-    constructor(title, releaseDate, genre, mustPlay, completed) {
-        this._title = title;
-        this._releaseDate = releaseDate;
-        this._genre = genre;
-        this._added = new Date();
-        this._mustPlay = mustPlay;
-        this._completed = completed;
-    }
+// testing
+const modalBtn = document.querySelector('.submitBtn');
+modalBtn.addEventListener('click', (e) => {
+    e.preventDefault;
+    gameController();
+})
 
-    set title(value) {
-        this._title = value;
-    }
-
-    set releaseDate(value) {
-        this._releaseDate = value;
-    }
-
-    set genre(value) {
-        this._genre = value;
-    }
-
-    set mustPlay(value) {
-        this._mustPlay = value;
-    }
-
-    set completed(value) {
-        this._completed = value;
-    }
+const gameController = () => {
+    const game = new Game(gameFormData());
+    library.push(game);
+    console.log(library);
 }
-
-const fallout = new Game('Fallout', '1997', 'RPG', 'Yes', 'No');
-
-console.table(fallout);
+// testing
 
