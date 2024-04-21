@@ -1,4 +1,4 @@
-//creates Game objects and stores them in library array
+// Creates Game objects and stores them in library array
 
 export const library = [];
 

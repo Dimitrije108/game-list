@@ -1,4 +1,4 @@
-//converts add game modal form data to be used by Game class
+// Converts add game modal form data to be used by Game class
 
 export const gameFormData = () => {
     const title = document.querySelector('#title').value;
