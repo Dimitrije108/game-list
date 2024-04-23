@@ -8,23 +8,31 @@ import { modalController } from "./modal";
 modalController();
 
 const addLib = () => {
-    const addLibrary = document.querySelector('.lib-add');
-    const libraryTab = document.querySelector('.lib-tab');
+    const addLibBtn = document.querySelector('.lib-add');
+    const libTab = document.querySelector('.lib-tab');
     let activeInput = false;
+    let renameInput = false;
 
     const createInput = () => {
-        const newForm = document.createElement('form');
         const newInput = document.createElement('input');
-
-        newForm.classList.add('newForm');
-
         newInput.setAttribute('type', 'text');
         newInput.setAttribute('id', 'newLib');
         newInput.setAttribute('name', 'newLib');
         newInput.setAttribute('placeholder', 'Name');
+        newInput.setAttribute('minlength', '1');
+        newInput.setAttribute('maxlength', '20');
+        return newInput;
+    };
 
-        newForm.appendChild(newInput);
-        libraryTab.appendChild(newForm);
+    const createForm = () => {
+        const newForm = document.createElement('form');
+        newForm.classList.add('newForm');
+        return newForm;
+    };
+    // Append elements;
+    const appendEl = (parent, child) => {
+        parent.appendChild(child);
+        return parent;
     };
 
     const createLibDiv = (name) => {
@@ -45,52 +53,79 @@ const addLib = () => {
         newDivContainer.appendChild(newDiv);
         newDivContainer.appendChild(newRenameBtn);
         newDivContainer.appendChild(newDelBtn);
-        libraryTab.appendChild(newDivContainer);
+        libTab.appendChild(newDivContainer);
     };
     // delete DOM element
     const delEl = (el) => {
         el.remove();
-    }
+    };
 
-    // const renameLib = (e) => {
-    //     const container = e.target.parentElement;
-    //     const renameEl = container.querySelector('.lib-name');
-    //     // transform it into an input field
-    //     // that has the current name inside it
-    //     // submit the value and therefore change the name
-    // }
-    // If input > 0 = Create new library and remove the input;
+    const renameInputField = (e) => {
+        const container = e.target.parentElement;
+        const currentName = container.querySelector('.lib-name');
+        const inputCurrentName = createInput();
+        inputCurrentName.value = currentName.textContent;
+        const form = appendEl(createForm(), inputCurrentName)
+        currentName.replaceWith(form);
+        inputCurrentName.focus();
+        return form;
+    };
+
+    const renameDivField = (value) => {
+        const newDiv = document.createElement('div');
+        newDiv.classList.add('lib-name');
+        newDiv.textContent = value;
+        return newDiv;
+    };
+    // When I rename a div I need to also add the .lib-div class to it since it doesn't have it anymore.
+    const renameLibController = (e) => {
+        if (activeInput) return;
+        if (!renameInput) {
+            renameInputField(e);
+            renameInput = true;
+        } else {
+            const form = document.querySelector('.newForm');
+            form.replaceWith(renameDivField(e));
+        }
+    };
+    // If input value > 0 = Create new library and remove the input;
     const inputController = () => {
         const selectForm = document.querySelector('.newForm');
         const selectInput = document.querySelector('#newLib');
         if (selectInput.value.length < 1) return;
-        createLibDiv(selectInput.value);
-        delEl(selectForm);
-        activeInput = false;
+        if (renameInput) {
+            renameLibController(selectInput.value);
+            renameInput = false;
+        } else {
+            createLibDiv(selectInput.value);
+            delEl(selectForm);
+            activeInput = false;
+        }
     };
     // If no input field is present, create one, otherwise, focus it;
-    const libraryController = () => {
-        if (!activeInput) {
-            createInput();
+    const libController = () => {
+        if (!activeInput && !renameInput) {
+            const form = appendEl(createForm(), createInput());
+            appendEl(libTab, form);
             activeInput = true;
         }
         const selectInput = document.querySelector('#newLib');
         selectInput.focus();
     };
 
-    libraryTab.addEventListener('click', (e) => {
+    libTab.addEventListener('click', (e) => {
         if (e.target.classList.contains('lib-rename')) {
-            renameLib(e);
+            renameLibController(e);
         }
     });
     // Triggers when an input field is submitted;
-    libraryTab.addEventListener('submit', (e) => {
+    libTab.addEventListener('submit', (e) => {
         e.preventDefault();
         inputController();
     });
 
-    addLibrary.addEventListener('click', () => {
-        libraryController();
+    addLibBtn.addEventListener('click', () => {
+        libController();
     });
 }
 
