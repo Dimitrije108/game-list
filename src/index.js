@@ -77,7 +77,7 @@ const addLib = () => {
         newDiv.textContent = value;
         return newDiv;
     };
-    // When I rename a div I need to also add the .lib-div class to it since it doesn't have it anymore.
+    
     const renameLibController = (e) => {
         if (activeInput) return;
         if (!renameInput) {
@@ -88,6 +88,11 @@ const addLib = () => {
             form.replaceWith(renameDivField(e));
         }
     };
+
+    const delLibController = (e) => {
+        const container = e.target.parentElement;
+        delEl(container);
+    }
     // If input value > 0 = Create new library and remove the input;
     const inputController = () => {
         const selectForm = document.querySelector('.newForm');
@@ -116,6 +121,9 @@ const addLib = () => {
     libTab.addEventListener('click', (e) => {
         if (e.target.classList.contains('lib-rename')) {
             renameLibController(e);
+        }
+        if (e.target.classList.contains('lib-del')) {
+            delLibController(e);
         }
     });
     // Triggers when an input field is submitted;
