@@ -1,21 +1,40 @@
 import html from "./index.html";
 import './style.css';
 import { gameFormData } from "./game-form-data";
-import { Game, library } from "./add-game-logic";
+import { Game } from "./add-game-logic";
 import { modalController } from "./modal";
 import { addLib } from "./add-library-logic";
+import { libraries } from "./library-logic";
 
 // testing
 modalController();
 addLib();
 
-// tab switching logic (not really because the background
-// stays the same I just load up different content):
-// 1. Make library container clickable
-// Once it's clicked:
-// 1. Delete displayed DOM
-// 2. Switch active library so it's the correct one
-// 3. Display that libraries content in DOM
+const libTab = document.querySelector('.lib-tab');
+
+const switchLibrary = (e) => {
+    const libraryList = [...libTab.children];
+    const clickedLib = libraryList.indexOf(e);
+    const activeLib = libraries.indexOf(clickedLib);
+    console.log(activeLib);
+    // figure out which lib was clicked
+    // have a lib array connected to it once you know which one it is
+    // delete current DOM
+    // display the correct lib array DOM
+}
+// Make 2 options separately for these below?
+libTab.addEventListener('click', (e) => {
+    if (e.target.classList.contains('lib-container')) {
+        switchLibrary(e.target);
+    }
+    if (e.target.classList.contains('lib-name')) {
+        switchLibrary(e.target.parentElement);
+    }
+});
+
+// Add library array logic:
+// 1. when creating library create an array as well
+// 2. connect that array to the library via dataset
 
 const filterLibrary = () => {
     // figure out which library/project tab is selected
