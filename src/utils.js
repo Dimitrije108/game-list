@@ -1,4 +1,14 @@
-export { createForm, createInput, createDiv, createBtn, appendEl, delEl };
+export { createForm, createInput, createDiv, createBtn, appendEl, delEl, libTab, clickedLib };
+
+const libTab = document.querySelector('.lib-tab');
+
+// Determines which library was clicked
+const clickedLib = (e) => {
+    const libTab = document.querySelector('.lib-tab');
+    const libraryList = [...libTab.children];
+    const clickedLib = libraryList.indexOf(e);
+    return clickedLib;
+};
 
 const createForm = () => {
     const newForm = document.createElement('form');

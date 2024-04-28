@@ -1,59 +1,60 @@
 import html from "./index.html";
 import './style.css';
-import { gameFormData } from "./game-form-data";
-import { Game } from "./add-game-logic";
+import gameFormData from "./game-form-data";
+import Game from "./add-game-logic";
 import { modalController } from "./modal";
-import { addLib } from "./add-library-logic";
-import { libraries } from "./library-logic";
+import { delEl, libTab, clickedLib } from "./utils";
+import { addLibArr, delLibArr } from "./library-logic";
+import { inputController, createLibInput, renameController, switchLibrary } from "./dom-library-logic";
 
 // testing
 modalController();
-addLib();
 
-const libTab = document.querySelector('.lib-tab');
+const addLibBtn = document.querySelector('.lib-add');
 
-const switchLibrary = (e) => {
-    const libraryList = [...libTab.children];
-    const clickedLib = libraryList.indexOf(e);
-    const activeLib = libraries.indexOf(clickedLib);
-    console.log(activeLib);
-    // figure out which lib was clicked
-    // have a lib array connected to it once you know which one it is
-    // delete current DOM
-    // display the correct lib array DOM
-}
-// Make 2 options separately for these below?
-libTab.addEventListener('click', (e) => {
-    if (e.target.classList.contains('lib-container')) {
-        switchLibrary(e.target);
-    }
-    if (e.target.classList.contains('lib-name')) {
-        switchLibrary(e.target.parentElement);
-    }
+// If new library is created, create the library array as well
+const addLibController = () => {
+    if (inputController()) {
+        addLibArr();
+    };
+};
+
+const delLib = (e) => {
+    if (confirm("Are you sure you want to remove this library?")) {
+        delLibArr(clickedLib(e));
+        delEl(e);
+    };
+};
+
+addLibBtn.addEventListener('click', () => {
+    createLibInput();
+});
+// Triggers when an input field is submitted;
+libTab.addEventListener('submit', (e) => {
+    e.preventDefault();
+    addLibController();
 });
 
-// Add library array logic:
-// 1. when creating library create an array as well
-// 2. connect that array to the library via dataset
-
-const filterLibrary = () => {
-    // figure out which library/project tab is selected
-        // when a new project is created, we create a button in html, and an array
-        // buttons data-attribute can be the name (they cant because name can be renamed, except maybe if initial name stays)
-        // since they're dynamically created I cannot put eventListener on each one
-        // so I should use event propagation on the container itself to see which
-        // tab was clicked / do the tab-switching logic
-        // theeen: let activeLibrary = e.target.dataAttribute
-        // this way activeLibrary will be used until another library
-        // is selected. Basically when eventListener pops of it will
-        // switch the activeLibrary into the correct one and add
-        // games to it.
-    // then just push to the proper library
-}
+libTab.addEventListener('click', (e) => {
+    // rename and delete buttons
+    if (e.target.classList.contains('lib-rename')) {
+        renameController(e);
+    };
+    if (e.target.classList.contains('lib-del')) {
+        delLib(e.target.parentElement);
+    };
+    // Switch the active library to the one clicked
+    if (e.target.classList.contains('lib-container')) {
+        switchLibrary(e.target);
+    };
+    if (e.target.classList.contains('lib-name')) {
+        switchLibrary(e.target.parentElement);
+    };
+});
 
 const gameController = () => {
     const game = new Game(gameFormData());
-    library.push(game);
+    activeLib.push(game);
     modal.close();
 };
 // testing

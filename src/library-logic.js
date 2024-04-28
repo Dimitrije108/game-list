@@ -6,13 +6,13 @@ libraries.push(collection);
 
 const getLibraries = () =>  libraries;
 
-const addLib = () => {
+const addLibArr = () => {
     const newLib = [];
     libraries.push(newLib);
 };
 
-const delLib = (lib) => {
+const delLibArr = (lib) => {
     libraries.splice(lib, 1);
 };
 
-export { getLibraries, addLib, delLib };
+export { getLibraries, addLibArr, delLibArr };
