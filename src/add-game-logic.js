@@ -1,8 +1,5 @@
 // Creates Game objects and stores them in library array
-
-export const library = [];
-
-export class Game {
+export default class Game {
     constructor(title, releaseDate, genre, completed, mustPlay) {
         this._title = title;
         this._releaseDate = releaseDate;
@@ -32,7 +29,3 @@ export class Game {
         this._mustPlay = value;
     }
 }
-
-//what if: HUB imports add game form values,  calls Game class to create new object,
-//adds new object to the array, then we need DOM stuff: create new gameContainer, clear
-//page and loop over array to append all objects.

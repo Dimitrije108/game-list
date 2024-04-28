@@ -1,6 +1,5 @@
 // Converts add game modal form data to be used by Game class
-
-export const gameFormData = () => {
+const gameFormData = () => {
     const title = document.querySelector('#title').value;
     const releaseDate = document.querySelector('#release-date').value;
     const genre = document.querySelector('#genre').value;
@@ -15,3 +14,5 @@ export const gameFormData = () => {
         mustPlay,
     }
 }
+
+export default gameFormData;
