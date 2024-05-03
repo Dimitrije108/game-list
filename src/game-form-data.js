@@ -15,4 +15,6 @@ const gameFormData = () => {
     }
 }
 
+// game DOM stuff later on
+
 export default gameFormData;

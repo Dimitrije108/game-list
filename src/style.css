@@ -11,8 +11,9 @@ body {
     display: grid;
     grid-template-columns: 1fr 5fr;
     height: 100%;
+    background-color: wheat;
 }
 
 .sidebar {
-    background-color: blueviolet;
+    background-color: gray;
 }
