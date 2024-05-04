@@ -18,7 +18,15 @@ export class GameModal {
             }
         });
     };
-
+    // Extract submitted game modal form data
+    getFormData = () => {
+        const title = document.querySelector('#title').value;
+        const releaseDate = document.querySelector('#release-date').value;
+        const genre = document.querySelector('#genre').value;
+        const completed = document.querySelector('#completed').value;
+        const mustPlay = document.querySelector('#must-play').value;
+        return { title, releaseDate, genre, completed, mustPlay, };
+    };
 };
 
 export class LibraryView {
