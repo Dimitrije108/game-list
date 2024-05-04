@@ -6,7 +6,7 @@ export class Controller {
         // Triggers when an input field is submitted;
         this.libTab.addEventListener('submit', (e) => {
             e.preventDefault();
-            this.handleInput(this.View.getInputValue());
+            this.handleAddLibrary(this.View.getInputValue());
         });
         this.libTab.addEventListener('click', (e) => {
             e.target.classList.contains('lib-del') && delLib(e.target.parentElement);
@@ -19,17 +19,15 @@ export class Controller {
         this.submitModalBtn.addEventListener('click', (e) => {
             e.preventDefault();
             handleAddGame();
-            // call Controller's handleAddGame which will:
-            // call this.Library.addGame(library, data);
-            // call this.View.updateGameView;
         });
     };
     handleAddGame() {
-        this.Model.addGame()
+        this.Model.addGame(this.View.getFormData());
         this.View.modal.close();
+        this.View.updateGameView(this.Model.activeLibrary);
     };
     // Submitted input field - rename library or create one
-    handleInput(inputValue) {
+    handleAddLibrary(inputValue) {
         if (inputValue.length < 1) return;
         if (this.View.renameInput) {
             this.View.addRenameDiv(inputValue);
@@ -46,7 +44,7 @@ export class Controller {
     delLib = (e) => {
         if (confirm("Are you sure you want to remove this library?")) {
             this.Model.delLibrary(this.View.clickedLib(e));
-            this.View.updateLibView();
+            // this.View.updateLibView();
         };
     };
 }

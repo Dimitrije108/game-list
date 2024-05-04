@@ -1,6 +1,6 @@
 import { createForm, createInput, createDiv, createBtn, appendEl, delEl } from "./utils";
 
-export class GameModal {
+export class GameView {
     constructor() {
         this.addGameBtn = document.querySelector('.add-game');
         this.modal = document.querySelector('.modal');
@@ -17,6 +17,7 @@ export class GameModal {
                 this.modal.close();
             }
         });
+        this.gamePage = document.querySelector('.game-page');
     };
     // Extract submitted game modal form data
     getFormData = () => {
@@ -27,6 +28,54 @@ export class GameModal {
         const mustPlay = document.querySelector('#must-play').value;
         return { title, releaseDate, genre, completed, mustPlay, };
     };
+    // Create and append game container with proper values
+    addGame = (game) => {
+        const containerDiv = createDiv(undefined, 'game-container');
+        const nameDiv = createDiv(game.title, 'game-name');
+        appendEl(containerDiv, nameDiv);
+
+        const releasedContainer = createDiv(undefined, 'game-stat-container');
+        const releasedLabel = createDiv('Released:');
+        const releasedValue = createDiv(game.releaseDate);
+        appendEl(releasedContainer, releasedLabel);
+        appendEl(releasedContainer, releasedValue);
+        appendEl(containerDiv, releasedContainer);
+
+        const genreContainer = createDiv(undefined, 'game-stat-container');
+        const genreLabel = createDiv('Genre:');
+        const genreValue = createDiv(game.genre);
+        appendEl(genreContainer, genreLabel);
+        appendEl(genreContainer, genreValue);
+        appendEl(containerDiv, genreContainer);
+
+        const addedContainer = createDiv(undefined, 'game-stat-container');
+        const addedLabel = createDiv('Added:');
+        const addedValue = createDiv(game.added);
+        appendEl(addedContainer, addedLabel);
+        appendEl(addedContainer, addedValue);
+        appendEl(containerDiv, addedContainer);
+
+        const completedContainer = createDiv(undefined, 'game-stat-container');
+        const completedLabel = createDiv('Completed:');
+        const completedValue = createDiv(game.completed);
+        appendEl(completedContainer, completedLabel);
+        appendEl(completedContainer, completedValue);
+        appendEl(containerDiv, completedContainer);
+
+        const mustPlayContainer = createDiv(undefined, 'game-stat-container');
+        const mustPlayLabel = createDiv('Must play:');
+        const mustPlayValue = createDiv(game.mustPlay);
+        appendEl(mustPlayContainer, mustPlayLabel);
+        appendEl(mustPlayContainer, mustPlayValue);
+        appendEl(containerDiv, mustPlayContainer);
+        
+        appendEl(this.gamePage, containerDiv);
+    }
+    // Iterates over library array and displays all game objects inside
+    updateGameView = (activeLibrary) => {
+        this.gamePage = '';
+        activeLibrary.forEach(this.addGame(game));
+    }
 };
 
 export class LibraryView {

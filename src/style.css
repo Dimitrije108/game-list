@@ -17,3 +17,8 @@ body {
 .sidebar {
     background-color: gray;
 }
+
+.game-container {
+    display: flex;
+    justify-content: space-between;
+}

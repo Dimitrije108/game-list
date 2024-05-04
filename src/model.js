@@ -9,12 +9,36 @@ export class Game {
         this._mustPlay = mustPlay;
     };
 
+    get title() {
+        this._title;
+    };
+
+    get releaseDate() {
+        this._releaseDate;
+    };
+    
+    get genre() {
+        this._genre;
+    };
+
+    get added() {
+        this._added;
+    };
+
+    get completed() {
+        this._completed;
+    };
+
+    get mustPlay() {
+        this._mustPlay;
+    };
+
     set title(value) {
         this._title = value;
     };
 
     set releaseDate(value) {
-        this.__releaseDate = value;
+        this._releaseDate = value;
     };
     
     set genre(value) {
