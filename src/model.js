@@ -1,82 +1,107 @@
+const { format } = require("date-fns");
 // Creates Game objects
-export class Game {
-    constructor(title, releaseDate, genre, completed, mustPlay) {
-        this._title = title;
-        this._releaseDate = releaseDate;
-        this._genre = genre;
-        this._added = new Date();
-        this._completed = completed;
-        this._mustPlay = mustPlay;
+class Game {
+    constructor(game) {
+        this._title = game.title;
+        this._releaseDate = game.releaseDate;
+        this._genre = game.genre;
+        this._added = format(new Date(), 'dd/MM/yyyy');
+        this._completed = game.completed;
+        this._mustPlay = game.mustPlay;
     };
 
     get title() {
-        this._title;
-    };
-
-    get releaseDate() {
-        this._releaseDate;
-    };
-    
-    get genre() {
-        this._genre;
-    };
-
-    get added() {
-        this._added;
-    };
-
-    get completed() {
-        this._completed;
-    };
-
-    get mustPlay() {
-        this._mustPlay;
+        return this._title;
     };
 
     set title(value) {
         this._title = value;
     };
 
+    get releaseDate() {
+        return this._releaseDate;
+    };
+
     set releaseDate(value) {
         this._releaseDate = value;
     };
     
+    get genre() {
+        return this._genre;
+    };
+
     set genre(value) {
         this._genre = value;
+    };
+
+    get added() {
+        return this._added;
+    };
+
+    get completed() {
+        return this._completed;
     };
 
     set completed(value) {
         this._completed = value;
     };
 
+    get mustPlay() {
+        return this._mustPlay;
+    };
+    
     set mustPlay(value) {
         this._mustPlay = value;
     };
 };
-// Handles Library logic
-export class Library {
+// Creates Library objects
+class Library {
+    constructor(name) {
+        this._name = name;
+        this._array = [];
+    };
+
+    get name() {
+        return this._name;
+    };
+
+    set name(value) {
+        this._name = value;
+    };
+
+    get array() {
+        return this._array;
+    };
+}
+// Handles app model logic
+export class Model {
     constructor() {
-        this._libraries = [[]];
-        this._activeLibrary = this._libraries[0];
-    }
+        this._collection = new Library('Collection');
+        this._libraries = [];
+        this._activeLibrary = this._collection.array;
+    };
 
     get getLibraries() {
         return this._libraries;
+    };
+
+    get collection() {
+        return this._collection;
     }
 
     get activeLibrary() {
         return this._activeLibrary;
-    }
+    };
 
     set activeLibrary(libIndex) {
-        this._activeLibrary = this._libraries[libIndex];
-    }
+        this._activeLibrary = libIndex >= 0 ? this._libraries[libIndex].array : this._collection;
+    };
 
-    addLibrary = () => this._libraries.push([]);
-
-    delLibrary = (libIndex) => this._libraries.splice(libIndex, 1);
+    addLibrary = (name) => this.getLibraries.push(new Library(name));
+    renameLibrary = (libIndex, name) => this.getLibraries[libIndex].name = name;
+    delLibrary = (libIndex) => this.getLibraries.splice(libIndex, 1);
 
     addGame = (data) => this.activeLibrary.push(new Game(data));
-
     delGame = (gameIndex) => this.activeLibrary.splice(gameIndex, 1);
 };
+

@@ -1,4 +1,4 @@
-export { createForm, createInput, createDiv, createBtn, appendEl, delEl };
+export { createForm, createInput, createDiv, createBtn };
 
 const createForm = () => {
     const newForm = document.createElement('form');
@@ -22,20 +22,11 @@ const createDiv = (txtContent, className) => {
     newDiv.textContent = txtContent;
     newDiv.classList.add(className);
     return newDiv;
-}
+};
 
 const createBtn = (txtContent, className) => {
     const newBtn = document.createElement('button');
     newBtn.textContent = txtContent;
     newBtn.classList.add(className);
     return newBtn;
-}
-// Append element
-const appendEl = (parent, child) => {
-    parent.appendChild(child);
-    return parent;
-};
-// Delete element
-const delEl = (el) => {
-    el.remove();
 };
