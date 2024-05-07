@@ -7,6 +7,7 @@ class Game {
         this._genre = game.genre;
         this._added = format(new Date(), 'dd/MM/yyyy');
         this._completed = game.completed;
+        this._dateCompleted = format(new Date(game.dateCompleted), 'dd/MM/yyyy');
         this._mustPlay = game.mustPlay;
     };
 
@@ -14,24 +15,12 @@ class Game {
         return this._title;
     };
 
-    set title(value) {
-        this._title = value;
-    };
-
     get releaseDate() {
         return this._releaseDate;
-    };
-
-    set releaseDate(value) {
-        this._releaseDate = value;
     };
     
     get genre() {
         return this._genre;
-    };
-
-    set genre(value) {
-        this._genre = value;
     };
 
     get added() {
@@ -42,16 +31,12 @@ class Game {
         return this._completed;
     };
 
-    set completed(value) {
-        this._completed = value;
+    get dateCompleted() {
+        return this._dateCompleted;
     };
 
     get mustPlay() {
         return this._mustPlay;
-    };
-    
-    set mustPlay(value) {
-        this._mustPlay = value;
     };
 };
 // Creates Library objects
@@ -96,12 +81,13 @@ export class Model {
     set activeLibrary(libIndex) {
         this._activeLibrary = libIndex >= 0 ? this._libraries[libIndex].array : this._collection;
     };
-
+    // Library methods
     addLibrary = (name) => this.getLibraries.push(new Library(name));
     renameLibrary = (libIndex, name) => this.getLibraries[libIndex].name = name;
     delLibrary = (libIndex) => this.getLibraries.splice(libIndex, 1);
-
+    // Game methods
     addGame = (data) => this.activeLibrary.push(new Game(data));
     delGame = (gameIndex) => this.activeLibrary.splice(gameIndex, 1);
+    editGame = (gameIndex, data) => this.activeLibrary[gameIndex] = new Game(data);
 };
 

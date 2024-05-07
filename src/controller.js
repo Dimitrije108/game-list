@@ -10,7 +10,7 @@ export class Controller {
         // Triggers when an input field is submitted
         this.libTab.addEventListener('submit', (e) => {
             e.preventDefault();
-            this.handleAddLibrary(this.LibraryView.getInputValue(), e.target.parentElement);
+            this.handleAddLibrary(this.LibraryView.getInputValue());
         });
         this.libTab.addEventListener('click', (e) => {
             e.target.classList.contains('lib-del') && this.delLib(e.target.parentElement);
@@ -32,7 +32,7 @@ export class Controller {
         this.GameView.updateGameView(this.Model.activeLibrary);
     };
     // Submitted input field - rename library or create one
-    handleAddLibrary(value, libIndex) {
+    handleAddLibrary(value) {
         if (value.length < 1) return;
         if (this.LibraryView.renameInput) {
             this.Model.renameLibrary(this.LibraryView.addRenameDiv(value), value);

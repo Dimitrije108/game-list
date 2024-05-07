@@ -25,8 +25,9 @@ export class GameView {
         const releaseDate = document.querySelector('#release-date').value;
         const genre = document.querySelector('#genre').value;
         const completed = document.querySelector('#completed').value;
+        const dateCompleted = document.querySelector('#dateCompleted').value;
         const mustPlay = document.querySelector('#must-play').value;
-        return { title, releaseDate, genre, completed, mustPlay, };
+        return { title, releaseDate, genre, completed, dateCompleted, mustPlay, };
     };
     // Create and append game container with proper values
     addGame = (game) => {
@@ -57,6 +58,12 @@ export class GameView {
         completedCont.appendChild(completedLabel);
         completedCont.appendChild(completedValue);
 
+        const dateCompletedCont = createDiv(undefined, 'game-stat-container');
+        const dateCompletedLabel = createDiv('Completed on:', 'label');
+        const dateCompletedValue = createDiv(game.dateCompleted, 'value');
+        dateCompletedCont.appendChild(dateCompletedLabel);
+        dateCompletedCont.appendChild(dateCompletedValue);
+
         const mustPlayCont = createDiv(undefined, 'game-stat-container');
         const mustPlayLabel = createDiv('Must play:', 'label');
         const mustPlayValue = createDiv(game.mustPlay, 'value');
@@ -68,6 +75,7 @@ export class GameView {
         contDiv.appendChild(genreCont);
         contDiv.appendChild(addedCont);
         contDiv.appendChild(completedCont);
+        contDiv.appendChild(dateCompletedCont);
         contDiv.appendChild(mustPlayCont);
         this.gamePage.appendChild(contDiv);
     }
