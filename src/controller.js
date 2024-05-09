@@ -21,9 +21,15 @@ export class Controller {
         this.submitModalBtn = document.querySelector('.submitModalBtn');
         // Triggers when Game form is submitted;
         this.submitModalBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            this.handleAddGame();
+            const form = document.querySelector('#form');
+            if (form.checkValidity()) {
+                e.preventDefault();
+                this.handleAddGame();
+                form.reset();
+            };
         });
+        this.gamePage = document.querySelector('.game-page');
+        this.gamePage.addEventListener('click', (e) => this.handleExpandGame(e));
     };
     // Adds new game to library and updates view
     handleAddGame() {
@@ -43,8 +49,24 @@ export class Controller {
             this.LibraryView.activeInput = false;
         };
     };
+    // Expand game details container when clicked
+    handleExpandGame = (e) => {
+        if (e.target.closest('.game-container')) {
+            // remove expand game if it exist so no 2 instances are open at the same time or
+            // delete the active one if same game is clicked; otherwise create expand cont
+            if (document.querySelector('.game-expand')) {
+                document.querySelector('.game-expand').remove();
+            } else {
+                const gameCont = e.target.closest('.game-container');
+                this.switchGame(gameCont);
+                this.GameView.expandGame(gameCont, this.Model.activeGame);
+            };
+        };
+    };
     // Clicked library becomes the active library
     switchLibrary = (e) => this.Model.activeLibrary = this.LibraryView.clickedLib(e);
+    // Clicked game becomes the active game
+    switchGame = (e) => this.Model.activeGame = this.GameView.clickedGame(e);
     // Delete library and update view
     delLib = (e) => {
         if (confirm("Are you sure you want to remove this library?")) {

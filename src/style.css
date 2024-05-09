@@ -18,7 +18,12 @@ body {
     background-color: gray;
 }
 
-.game-container {
+.game-init {
+    display: flex;
+    justify-content: space-between;
+}
+
+.game-expand {
     display: flex;
     justify-content: space-between;
 }

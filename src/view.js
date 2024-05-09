@@ -24,21 +24,28 @@ export class GameView {
         const title = document.querySelector('#title').value;
         const releaseDate = document.querySelector('#release-date').value;
         const genre = document.querySelector('#genre').value;
-        const completed = document.querySelector('#completed').value;
+        let mustPlay = '';
+        if (document.querySelector('#must-play').checked) {
+            mustPlay = document.querySelector('#must-play').value;
+        };
+        const progress = document.querySelector('#progress').value;
         const dateCompleted = document.querySelector('#dateCompleted').value;
-        const mustPlay = document.querySelector('#must-play').value;
-        return { title, releaseDate, genre, completed, dateCompleted, mustPlay, };
+        const rating = document.querySelector('#rating').value;
+        return { title, releaseDate, genre, mustPlay, progress, dateCompleted, rating, };
     };
     // Create and append game container with proper values
     addGame = (game) => {
         const contDiv = createDiv(undefined, 'game-container');
-        const nameDiv = createDiv(game.title, 'game-name');
+        const initView = createDiv(undefined, 'game-init');
 
-        const releasedCont = createDiv(undefined, 'game-stat-container');
-        const releasedLabel = createDiv('Released:', 'label');
-        const releasedValue = createDiv(game.releaseDate, 'value');
-        releasedCont.appendChild(releasedLabel);
-        releasedCont.appendChild(releasedValue);
+        const nameCont = createDiv(undefined, 'game-stat-container');
+        const nameValue = createDiv(game.title, 'game-name');
+        nameCont.appendChild(nameValue);
+
+        if (game.mustPlay !== '') {
+            const mustPlay = createDiv(game.mustPlay, 'must-play');
+            nameCont.appendChild(mustPlay);
+        };
 
         const genreCont = createDiv(undefined, 'game-stat-container');
         const genreLabel = createDiv('Genre:', 'label');
@@ -52,38 +59,63 @@ export class GameView {
         addedCont.appendChild(addedLabel);
         addedCont.appendChild(addedValue);
 
-        const completedCont = createDiv(undefined, 'game-stat-container');
-        const completedLabel = createDiv('Completed:', 'label');
-        const completedValue = createDiv(game.completed, 'value');
-        completedCont.appendChild(completedLabel);
-        completedCont.appendChild(completedValue);
-
-        const dateCompletedCont = createDiv(undefined, 'game-stat-container');
-        const dateCompletedLabel = createDiv('Completed on:', 'label');
-        const dateCompletedValue = createDiv(game.dateCompleted, 'value');
-        dateCompletedCont.appendChild(dateCompletedLabel);
-        dateCompletedCont.appendChild(dateCompletedValue);
-
-        const mustPlayCont = createDiv(undefined, 'game-stat-container');
-        const mustPlayLabel = createDiv('Must play:', 'label');
-        const mustPlayValue = createDiv(game.mustPlay, 'value');
-        mustPlayCont.appendChild(mustPlayLabel);
-        mustPlayCont.appendChild(mustPlayValue);
+        const progressValue = createDiv(game.progress, 'value');
         
-        contDiv.appendChild(nameDiv);
-        contDiv.appendChild(releasedCont);
-        contDiv.appendChild(genreCont);
-        contDiv.appendChild(addedCont);
-        contDiv.appendChild(completedCont);
-        contDiv.appendChild(dateCompletedCont);
-        contDiv.appendChild(mustPlayCont);
+        initView.appendChild(nameCont);
+        initView.appendChild(genreCont);
+        initView.appendChild(addedCont);
+        initView.appendChild(progressValue);
+        contDiv.appendChild(initView);
         this.gamePage.appendChild(contDiv);
-    }
+    };
+
+    expandGame = (gameCont, game) => {
+        const expandView = createDiv(undefined, 'game-expand');
+
+        const releasedCont = createDiv(undefined, 'game-stat-container');
+        const releasedLabel = createDiv('Released:', 'label');
+        const releasedValue = createDiv(game.releaseDate, 'value');
+        releasedCont.appendChild(releasedLabel);
+        releasedCont.appendChild(releasedValue);
+        expandView.appendChild(releasedCont);
+
+        if (game.dateCompleted !== undefined) {
+            const dateCompletedCont = createDiv(undefined, 'game-stat-container');
+            const dateCompletedLabel = createDiv('Completed on:', 'label');
+            const dateCompletedValue = createDiv(game.dateCompleted, 'value');
+            dateCompletedCont.appendChild(dateCompletedLabel);
+            dateCompletedCont.appendChild(dateCompletedValue);
+            expandView.appendChild(dateCompletedCont);
+        };
+
+        if (game.rating !== '') {
+            const ratingCont = createDiv(undefined, 'game-stat-container');
+            const ratingLabel = createDiv('Your Rating:', 'label');
+            const ratingValue = createDiv(game.rating, 'value');
+            ratingCont.appendChild(ratingLabel);
+            ratingCont.appendChild(ratingValue);
+            expandView.appendChild(ratingCont);
+        };
+
+        const editBtn = createBtn('edit', 'game-edit');
+        const delBtn = createBtn('del', 'game-del');
+        expandView.appendChild(editBtn);
+        expandView.appendChild(delBtn);
+
+        gameCont.appendChild(expandView);
+        // add eventListener and if it's registered the expand game closes/gets deleted
+    };
+    // Determines which game was clicked
+    clickedGame = (e) => {
+        const gameList = [...this.gamePage.children];
+        const clickedGame = gameList.indexOf(e);
+        return clickedGame;
+    };
     // Iterates over library array and displays all game objects inside
     updateGameView = (activeLibrary) => {
         this.gamePage.textContent = '';
         activeLibrary.forEach((game) => this.addGame(game));
-    }
+    };
 };
 
 export class LibraryView {

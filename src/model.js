@@ -6,9 +6,12 @@ class Game {
         this._releaseDate = game.releaseDate;
         this._genre = game.genre;
         this._added = format(new Date(), 'dd/MM/yyyy');
-        this._completed = game.completed;
-        this._dateCompleted = format(new Date(game.dateCompleted), 'dd/MM/yyyy');
+        this._progress = game.progress;
+        if (game.dateCompleted !== '') {
+            this._dateCompleted = format(new Date(game.dateCompleted), 'dd/MM/yyyy');
+        };
         this._mustPlay = game.mustPlay;
+        this._rating = game.rating;
     };
 
     get title() {
@@ -27,8 +30,8 @@ class Game {
         return this._added;
     };
 
-    get completed() {
-        return this._completed;
+    get progress() {
+        return this._progress;
     };
 
     get dateCompleted() {
@@ -37,6 +40,10 @@ class Game {
 
     get mustPlay() {
         return this._mustPlay;
+    };
+
+    get rating() {
+        return this._rating;
     };
 };
 // Creates Library objects
@@ -64,6 +71,7 @@ export class Model {
         this._collection = new Library('Collection');
         this._libraries = [];
         this._activeLibrary = this._collection.array;
+        this._activeGame = '';
     };
 
     get getLibraries() {
@@ -80,6 +88,16 @@ export class Model {
 
     set activeLibrary(libIndex) {
         this._activeLibrary = libIndex >= 0 ? this._libraries[libIndex].array : this._collection;
+    };
+
+    get activeGame() {
+        return this._activeGame;
+    };
+
+    set activeGame(gameIndex) {
+        if (gameIndex >= 0) {
+            this._activeGame = this._activeLibrary[gameIndex];
+        };
     };
     // Library methods
     addLibrary = (name) => this.getLibraries.push(new Library(name));
