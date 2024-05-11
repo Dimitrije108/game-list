@@ -22,9 +22,12 @@ export class Controller {
         });
         this.gamePage = document.querySelector('.game-page');
         // Handles game cont clicks - edit game or expand game
+        // add del
         this.gamePage.addEventListener('click', (e) => {
             if (e.target.classList.contains('game-edit')) {
                 this.openEditModal();
+            } else if (e.target.classList.contains('game-del')) {
+                this.delGame(e.target.closest('.game-container'));
             } else if (e.target.closest('.game-container')) {
                 this.handleExpandGame(e);
             };
@@ -100,7 +103,6 @@ export class Controller {
             e.preventDefault();
             this.Model.editGame(this.GameView.getFormData());
             this.GameView.modal.close();
-            console.log(this.Model.activeLibrary);
             this.GameView.updateGameView(this.Model.activeLibrary);
             form.reset();
             this.GameView.expandState = false;
@@ -117,6 +119,14 @@ export class Controller {
         if (confirm("Are you sure you want to remove this library?")) {
             this.Model.delLibrary(this.LibraryView.clickedLib(e));
             this.LibraryView.updateLibView(this.Model.getLibraries);
+        };
+    };
+    // Delete game and update view
+    delGame = (e) => {
+        if (confirm("Are you sure you want to remove this game?")) {
+            this.Model.delGame(this.GameView.clickedGame(e));
+            this.GameView.updateGameView(this.Model.activeLibrary);
+            this.GameView.expandState = false;
         };
     };
 };
