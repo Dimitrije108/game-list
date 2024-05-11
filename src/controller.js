@@ -4,38 +4,61 @@ export class Controller {
         this.GameView = GameView;
         this.LibraryView = LibraryView;
         this.collection = document.querySelector('.lib-main');
-        // Switches to the Collection library
+        // Switches to the Collection(main) library
         this.collection.addEventListener('click', () => this.switchLibrary());
         this.libTab = document.querySelector('.lib-tab');
-        // Triggers when an input field is submitted
+        // Triggers when an input field is submitted in the library sidebar
         this.libTab.addEventListener('submit', (e) => {
             e.preventDefault();
             this.handleAddLibrary(this.LibraryView.getInputValue());
         });
         this.libTab.addEventListener('click', (e) => {
+            // Delete and rename library buttons
             e.target.classList.contains('lib-del') && this.delLib(e.target.parentElement);
+            e.target.classList.contains('lib-rename') && this.LibraryView.handleRename(e);
             // Switch the active library to the one clicked
             e.target.classList.contains('lib-container') && this.switchLibrary(e.target);
             e.target.classList.contains('lib-name') && this.switchLibrary(e.target.parentElement);
         });
-        this.submitModalBtn = document.querySelector('.submitModalBtn');
-        // Triggers when Game form is submitted;
-        this.submitModalBtn.addEventListener('click', (e) => {
-            const form = document.querySelector('#form');
-            if (form.checkValidity()) {
-                e.preventDefault();
-                this.handleAddGame();
-                form.reset();
+        this.gamePage = document.querySelector('.game-page');
+        // Handles game cont clicks - edit game or expand game
+        this.gamePage.addEventListener('click', (e) => {
+            if (e.target.classList.contains('game-edit')) {
+                this.openEditModal();
+            } else if (e.target.closest('.game-container')) {
+                this.handleExpandGame(e);
             };
         });
-        this.gamePage = document.querySelector('.game-page');
-        this.gamePage.addEventListener('click', (e) => this.handleExpandGame(e));
+        this.GameView.modal.addEventListener('click', (e) => {
+            // Close modal if a click is registered outside of the modal box
+            const dialogDimensions = this.GameView.modal.getBoundingClientRect();
+            if (
+                e.clientX < dialogDimensions.left ||
+                e.clientX > dialogDimensions.right ||
+                e.clientY < dialogDimensions.top ||
+                e.clientY > dialogDimensions.bottom
+            ) {
+                this.GameView.modal.close();
+            };
+            // Triggers when Game form is submitted
+            // Edit or add the game
+            if (e.target.classList.contains('game-save')) {
+                this.handleEditGame(e);
+            } else if (e.target.classList.contains('modal-btn-submit')) {
+                this.handleAddGame(e);
+            };
+        });
     };
-    // Adds new game to library and updates view
-    handleAddGame() {
-        this.Model.addGame(this.GameView.getFormData());
-        this.GameView.modal.close();
-        this.GameView.updateGameView(this.Model.activeLibrary);
+    // HANDLERS
+    // Checks form, adds new game to the library and updates the view
+    handleAddGame(e) {
+        if (form.checkValidity()) {
+            e.preventDefault();
+            this.Model.addGame(this.GameView.getFormData());
+            this.GameView.modal.close();
+            this.GameView.updateGameView(this.Model.activeLibrary);
+            form.reset();
+        };
     };
     // Submitted input field - rename library or create one
     handleAddLibrary(value) {
@@ -51,18 +74,40 @@ export class Controller {
     };
     // Expand game details container when clicked
     handleExpandGame = (e) => {
-        if (e.target.closest('.game-container')) {
-            // remove expand game if it exist so no 2 instances are open at the same time or
-            // delete the active one if same game is clicked; otherwise create expand cont
-            if (document.querySelector('.game-expand')) {
+        const gameCont = e.target.closest('.game-container');
+        if (this.GameView.expandState) {
+            // Close expand container if it's already open and clicked on again
+            if (this.Model.activeLibrary.indexOf(this.Model.activeGame) === this.GameView.clickedGame(gameCont)) {
                 document.querySelector('.game-expand').remove();
+                this.GameView.expandState = false;
+            // Close the open one and expand the clicked one
             } else {
-                const gameCont = e.target.closest('.game-container');
+                document.querySelector('.game-expand').remove();
                 this.switchGame(gameCont);
                 this.GameView.expandGame(gameCont, this.Model.activeGame);
             };
+        // Otherwise expand the clicked container
+        } else {
+            this.switchGame(gameCont);
+            this.GameView.expandGame(gameCont, this.Model.activeGame);
+            this.GameView.expandState = true;
         };
     };
+    // Checks form and replaces edited game with the one that has the edited
+    // info and updates game view
+    handleEditGame = (e) => {
+        if (form.checkValidity()) {
+            e.preventDefault();
+            this.Model.editGame(this.GameView.getFormData());
+            this.GameView.modal.close();
+            console.log(this.Model.activeLibrary);
+            this.GameView.updateGameView(this.Model.activeLibrary);
+            form.reset();
+            this.GameView.expandState = false;
+        };
+    };
+    // Displays modal to edit with game values filled in
+    openEditModal = () => this.GameView.editGameModal(this.Model.activeGame);
     // Clicked library becomes the active library
     switchLibrary = (e) => this.Model.activeLibrary = this.LibraryView.clickedLib(e);
     // Clicked game becomes the active game

@@ -1,11 +1,13 @@
 const { format } = require("date-fns");
 // Creates Game objects
 class Game {
-    constructor(game) {
+    constructor(game, dateAdded) {
         this._title = game.title;
         this._releaseDate = game.releaseDate;
         this._genre = game.genre;
-        this._added = format(new Date(), 'dd/MM/yyyy');
+        // Keep the same added date value if game obj is edited, instead of creating a new one
+        // This is because editing an existing game object creates a new object
+        this._added = dateAdded || format(new Date(), 'dd/MM/yyyy');
         this._progress = game.progress;
         if (game.dateCompleted !== '') {
             this._dateCompleted = format(new Date(game.dateCompleted), 'dd/MM/yyyy');
@@ -106,6 +108,9 @@ export class Model {
     // Game methods
     addGame = (data) => this.activeLibrary.push(new Game(data));
     delGame = (gameIndex) => this.activeLibrary.splice(gameIndex, 1);
-    editGame = (gameIndex, data) => this.activeLibrary[gameIndex] = new Game(data);
+    editGame = (data) => {
+        const gameIndex = this.activeLibrary.indexOf(this.activeGame);
+        this.activeLibrary.splice(gameIndex, 1, new Game(data, this.activeGame.added));
+    };
 };
 

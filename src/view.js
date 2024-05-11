@@ -1,22 +1,22 @@
 import { createForm, createInput, createDiv, createBtn } from "./utils";
+const { format } = require("date-fns");
 
 export class GameView {
     constructor() {
         this.addGameBtn = document.querySelector('.add-game');
         this.modal = document.querySelector('.modal');
         this.gamePage = document.querySelector('.game-page');
-        this.addGameBtn.addEventListener('click', () => this.modal.showModal());
-        // Close modal if a click is registered outside of the modal box
-        this.modal.addEventListener('click', (e) => {
-            const dialogDimensions = this.modal.getBoundingClientRect()
-            if (
-                e.clientX < dialogDimensions.left ||
-                e.clientX > dialogDimensions.right ||
-                e.clientY < dialogDimensions.top ||
-                e.clientY > dialogDimensions.bottom
-            ) {
-                this.modal.close();
-            }
+        this.expandState = false;
+        this.addGameBtn.addEventListener('click', () => {
+            this.modal.showModal();
+            // Changes it back to the submit btn if edit btn was previously used
+            // This is done so as to reuse the same modal form and only change
+            // the btn that submits the form
+            if (document.querySelector('.game-save')) {
+                const changeBtn = document.querySelector('.game-save');
+                changeBtn.textContent = 'Submit';
+                this.changeBtn.classList.replace('game-save', 'modal-btn-submit');
+            };
         });
     };
     // Extract submitted game modal form data
@@ -103,7 +103,29 @@ export class GameView {
         expandView.appendChild(delBtn);
 
         gameCont.appendChild(expandView);
-        // add eventListener and if it's registered the expand game closes/gets deleted
+    };
+    // Displays modal and fills in input fields with game values so they're editable
+    editGameModal = (game) => {
+        this.modal.showModal();
+        document.querySelector('#title').value = game.title;
+        document.querySelector('#release-date').value = game.releaseDate;
+        document.querySelector('#genre').value = game.genre;
+        if (game.mustPlay !== '') {
+            document.querySelector('#must-play').checked = true;
+        };
+        document.querySelector('#progress').value = game.progress;
+        // Date has to be reformatted into the original so it can be used as set value
+        if (game.dateCompleted !== undefined) {
+            const reformatted = format(new Date(game.dateCompleted), 'yyyy-dd-MM');
+            document.querySelector('#dateCompleted').value = reformatted;
+        };
+        document.querySelector('#rating').value = game.rating;
+        // Replace the submit button with save button
+        if (document.querySelector('.modal-btn-submit')) {
+            const changeBtn = document.querySelector('.modal-btn-submit');
+            changeBtn.textContent = 'Save';
+            changeBtn.classList.replace('modal-btn-submit', 'game-save');
+        };
     };
     // Determines which game was clicked
     clickedGame = (e) => {
@@ -123,9 +145,6 @@ export class LibraryView {
         this.activeInput = false;
         this.renameInput = false;
         this.libTab = document.querySelector('.lib-tab');
-        this.libTab.addEventListener('click', (e) => {
-            e.target.classList.contains('lib-rename') && this.handleRename(e);
-        });
         this.addLibBtn = document.querySelector('.lib-add');
         this.addLibBtn.addEventListener('click', () => this.handleAddInput());
     }
