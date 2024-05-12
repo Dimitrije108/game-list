@@ -1,4 +1,4 @@
-import { createForm, createInput, createDiv, createBtn } from "./utils";
+import { createDiv, createBtn } from "./utils";
 const { format } = require("date-fns");
 
 export class GameView {
@@ -6,6 +6,7 @@ export class GameView {
         this.addGameBtn = document.querySelector('.add-game');
         this.modal = document.querySelector('.modal');
         this.gamePage = document.querySelector('.game-page');
+        // If the game cont is expanded with additional info or not
         this.expandState = false;
         this.addGameBtn.addEventListener('click', () => {
             this.modal.showModal();
@@ -15,7 +16,7 @@ export class GameView {
             if (document.querySelector('.game-save')) {
                 const changeBtn = document.querySelector('.game-save');
                 changeBtn.textContent = 'Submit';
-                this.changeBtn.classList.replace('game-save', 'modal-btn-submit');
+                changeBtn.classList.replace('game-save', 'modal-btn-submit');
             };
         });
     };
@@ -68,7 +69,7 @@ export class GameView {
         contDiv.appendChild(initView);
         this.gamePage.appendChild(contDiv);
     };
-
+    // Expand game container(when clicked) with additional information
     expandGame = (gameCont, game) => {
         const expandView = createDiv(undefined, 'game-expand');
 
@@ -101,7 +102,6 @@ export class GameView {
         const delBtn = createBtn('del', 'game-del');
         expandView.appendChild(editBtn);
         expandView.appendChild(delBtn);
-
         gameCont.appendChild(expandView);
     };
     // Displays modal and fills in input fields with game values so they're editable
@@ -137,79 +137,5 @@ export class GameView {
     updateGameView = (activeLibrary) => {
         this.gamePage.textContent = '';
         activeLibrary.forEach((game) => this.addGame(game));
-    };
-};
-
-export class LibraryView {
-    constructor() {
-        this.activeInput = false;
-        this.renameInput = false;
-        this.libTab = document.querySelector('.lib-tab');
-        this.addLibBtn = document.querySelector('.lib-add');
-        this.addLibBtn.addEventListener('click', () => this.handleAddInput());
-    }
-    
-    addInput = () => {
-        const form = createForm();
-        form.appendChild(createInput());
-        this.libTab.appendChild(form);
-    };
-
-    getInputValue = () => document.querySelector('#newLib').value;
-    // If no input field is present, create one, otherwise, focus it;
-    handleAddInput = () => {
-        if (!this.activeInput && !this.renameInput) {
-            this.addInput();
-            this.activeInput = true;
-        }
-        document.querySelector('#newLib').focus();
-    };
-    // Create and append library container
-    addLibContainer = (name) => {
-        const containerDiv = createDiv(undefined, 'lib-container');
-        const nameDiv = createDiv(name, 'lib-name');
-        const renameBtn = createBtn('rename', 'lib-rename');
-        const delBtn = createBtn('del', 'lib-del');
-        containerDiv.appendChild(nameDiv);
-        containerDiv.appendChild(renameBtn);
-        containerDiv.appendChild(delBtn);
-        this.libTab.appendChild(containerDiv);
-    };
-    // Replace current library name div with an input field form
-    addRenameInput = (e) => {
-        const container = e.target.parentElement;
-        const currentName = container.querySelector('.lib-name');
-        const inputCurrentName = createInput();
-        inputCurrentName.value = currentName.textContent;
-        const form = createForm();
-        form.appendChild(inputCurrentName);
-        currentName.replaceWith(form);
-    };
-    // Create an input to rename a div or focus the one that is already active
-    handleRename = (e) => {
-        if (this.activeInput) return;
-        if (!this.renameInput) {
-            this.addRenameInput(e);
-            this.renameInput = true;
-        };
-        document.querySelector('#newLib').focus();
-    };
-    // Replace the input field with the renamed div
-    addRenameDiv = (value) => {
-        const form = document.querySelector('.newForm');
-        const renamedDiv = createDiv(value, 'lib-name');
-        form.replaceWith(renamedDiv);
-        return this.clickedLib(renamedDiv.parentElement);
-    };
-    // Determines which library was clicked
-    clickedLib = (e) => {
-        const libraryList = [...this.libTab.children];
-        const clickedLib = libraryList.indexOf(e);
-        return clickedLib;
-    };
-    // Iterates over libraries array and displays all libraries inside
-    updateLibView = (libraries) => {
-        this.libTab.textContent = '';
-        libraries.forEach((lib) => this.addLibContainer(lib.name));
     };
 };
