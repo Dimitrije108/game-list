@@ -6,6 +6,9 @@ export class Controller {
         this.collection = document.querySelector('.lib-main');
         // Switches to the Collection(main) library
         this.collection.addEventListener('click', () => this.switchLibrary());
+        this.addLibBtn = document.querySelector('.lib-add');
+        // Creates an input for a new library name
+        this.addLibBtn.addEventListener('click', () => this.handleAddLibInput());
         this.libTab = document.querySelector('.lib-tab');
         // Triggers when an input field is submitted in the library sidebar
         this.libTab.addEventListener('submit', (e) => {
@@ -15,7 +18,7 @@ export class Controller {
         this.libTab.addEventListener('click', (e) => {
             // Delete and rename library buttons
             e.target.classList.contains('lib-del') && this.delLib(e.target.parentElement);
-            e.target.classList.contains('lib-rename') && this.LibraryView.handleRename(e);
+            e.target.classList.contains('lib-rename') && this.handleRenameLibrary(e);
             // Switch the active library to the one clicked
             e.target.classList.contains('lib-container') && this.switchLibrary(e.target);
             e.target.classList.contains('lib-name') && this.switchLibrary(e.target.parentElement);
@@ -63,7 +66,7 @@ export class Controller {
             form.reset();
         };
     };
-    // Submitted input field - rename library or create one
+    // Submitted input field -> rename library or create one
     handleAddLibrary(value) {
         if (value.length < 1) return;
         if (this.LibraryView.renameInput) {
@@ -73,6 +76,31 @@ export class Controller {
             this.Model.addLibrary(value);
             this.LibraryView.updateLibView(this.Model.getLibraries);
             this.LibraryView.activeInput = false;
+        };
+    };
+    // Add new library input or add the new library to the system depending on the state
+    handleAddLibInput = () => {
+        if (this.LibraryView.renameInput) return document.querySelector('#newLib').focus();
+        if (!this.LibraryView.activeInput) {
+            this.LibraryView.addInput();
+            this.LibraryView.activeInput = true;
+            document.querySelector('#newLib').focus();
+        } else {
+            this.handleAddLibrary(this.LibraryView.getInputValue());
+        }
+    };
+    // Add rename input or save the one that was renamed:
+    // This is done so you can change the name of the library both by pressing enter when
+    // you fill out the input field or pressing the rename button again. Depending on the state
+    // rename button will either create an input or submit the input.
+    handleRenameLibrary = (e) => {
+        if (this.LibraryView.activeInput) return document.querySelector('#newLib').focus();
+        if (!this.LibraryView.renameInput) {
+            this.LibraryView.addRenameInput(e);
+            this.LibraryView.renameInput = true;
+            document.querySelector('#newLib').focus();
+        } else {
+            this.handleAddLibrary(this.LibraryView.getInputValue());
         };
     };
     // Expand game details container when clicked
