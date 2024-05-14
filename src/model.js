@@ -133,7 +133,7 @@ export class Model {
     };
 
     set activeLibrary(libIndex) {
-        this._activeLibrary = libIndex >= 0 ? this._libraries[libIndex].array : this._collection;
+        this._activeLibrary = libIndex >= 0 ? this._libraries[libIndex].array : this._collection.array;
     };
 
     get activeGame() {
