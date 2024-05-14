@@ -6,3 +6,4 @@ import { LibraryView } from "./libraryView.js";
 import { Controller } from "./controller.js";
 
 const gameList = new Controller(new Model(), new GameView(), new LibraryView());
+gameList.initData();

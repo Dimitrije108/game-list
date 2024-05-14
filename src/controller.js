@@ -17,7 +17,7 @@ export class Controller {
         });
         this.libTab.addEventListener('click', (e) => {
             // Delete and rename library buttons
-            e.target.classList.contains('lib-del') && this.delLib(e.target.parentElement);
+            e.target.classList.contains('lib-del') && this.handleDelLib(e.target.parentElement);
             e.target.classList.contains('lib-rename') && this.handleRenameLibrary(e);
             // Switch the active library to the one clicked
             e.target.classList.contains('lib-container') && this.switchLibrary(e.target);
@@ -30,7 +30,7 @@ export class Controller {
             if (e.target.classList.contains('game-edit')) {
                 this.openEditModal();
             } else if (e.target.classList.contains('game-del')) {
-                this.delGame(e.target.closest('.game-container'));
+                this.handleDelGame(e.target.closest('.game-container'));
             } else if (e.target.closest('.game-container')) {
                 this.handleExpandGame(e);
             };
@@ -61,9 +61,11 @@ export class Controller {
         if (form.checkValidity()) {
             e.preventDefault();
             this.Model.addGame(this.GameView.getFormData());
+            this.Model.saveData();
             this.GameView.modal.close();
             this.GameView.updateGameView(this.Model.activeLibrary);
             form.reset();
+            this.GameView.expandState = false;
         };
     };
     // Submitted input field -> rename library or create one
@@ -71,9 +73,11 @@ export class Controller {
         if (value.length < 1) return;
         if (this.LibraryView.renameInput) {
             this.Model.renameLibrary(this.LibraryView.addRenameDiv(value), value);
+            this.Model.saveData();
             this.LibraryView.renameInput = false;
         } else {
             this.Model.addLibrary(value);
+            this.Model.saveData();
             this.LibraryView.updateLibView(this.Model.getLibraries);
             this.LibraryView.activeInput = false;
         };
@@ -130,6 +134,7 @@ export class Controller {
         if (form.checkValidity()) {
             e.preventDefault();
             this.Model.editGame(this.GameView.getFormData());
+            this.Model.saveData();
             this.GameView.modal.close();
             this.GameView.updateGameView(this.Model.activeLibrary);
             form.reset();
@@ -143,18 +148,30 @@ export class Controller {
     // Clicked game becomes the active game
     switchGame = (e) => this.Model.activeGame = this.GameView.clickedGame(e);
     // Delete library and update view
-    delLib = (e) => {
+    handleDelLib = (e) => {
         if (confirm("Are you sure you want to remove this library?")) {
             this.Model.delLibrary(this.LibraryView.clickedLib(e));
+            this.Model.saveData();
             this.LibraryView.updateLibView(this.Model.getLibraries);
         };
     };
     // Delete game and update view
-    delGame = (e) => {
+    handleDelGame = (e) => {
         if (confirm("Are you sure you want to remove this game?")) {
             this.Model.delGame(this.GameView.clickedGame(e));
+            this.Model.saveData();
             this.GameView.updateGameView(this.Model.activeLibrary);
             this.GameView.expandState = false;
+        };
+    };
+    // If stored data exists load it and update the view, if not, create the storage reference
+    initData = () => {
+        if (localStorage.getItem("collection") || localStorage.getItem("libraries")) {
+            this.Model.loadData();
+            this.LibraryView.updateLibView(this.Model.getLibraries);
+            this.GameView.updateGameView(this.Model.activeLibrary);
+        } else {
+            this.Model.saveData();
         };
     };
 };
