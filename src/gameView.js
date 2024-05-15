@@ -42,7 +42,7 @@ export class GameView {
         const nameCont = createDiv(undefined, 'game-stat-container');
         const nameValue = createDiv(game.title, 'game-name');
         nameCont.appendChild(nameValue);
-
+        // Display must play only if it's checked
         if (game.mustPlay !== '') {
             const mustPlay = createDiv(game.mustPlay, 'must-play');
             nameCont.appendChild(mustPlay);
@@ -79,8 +79,8 @@ export class GameView {
         releasedCont.appendChild(releasedLabel);
         releasedCont.appendChild(releasedValue);
         expandView.appendChild(releasedCont);
-
-        if (game.dateCompleted !== undefined) {
+        // Display date completed only if it's filled out
+        if (game.dateCompleted !== '') {
             const dateCompletedCont = createDiv(undefined, 'game-stat-container');
             const dateCompletedLabel = createDiv('Completed on:', 'label');
             const dateCompletedValue = createDiv(game.dateCompleted, 'value');
@@ -88,7 +88,7 @@ export class GameView {
             dateCompletedCont.appendChild(dateCompletedValue);
             expandView.appendChild(dateCompletedCont);
         };
-
+        // Display rating only if it's filled out
         if (game.rating !== '') {
             const ratingCont = createDiv(undefined, 'game-stat-container');
             const ratingLabel = createDiv('Your Rating:', 'label');
@@ -115,7 +115,7 @@ export class GameView {
         };
         document.querySelector('#progress').value = game.progress;
         // Date has to be reformatted into the original so it can be used as set value
-        if (game.dateCompleted !== undefined) {
+        if (game.dateCompleted !== '') {
             const reformatted = format(new Date(game.dateCompleted), 'yyyy-dd-MM');
             document.querySelector('#dateCompleted').value = reformatted;
         };

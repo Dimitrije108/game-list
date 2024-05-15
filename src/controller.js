@@ -8,6 +8,7 @@ export class Controller {
         this.collection.addEventListener('click', () => {
             this.switchLibrary();
             this.GameView.updateGameView(this.Model.activeLibrary);
+            this.GameView.expandState = false;
         });
         this.addLibBtn = document.querySelector('.lib-add');
         // Creates an input for a new library name
@@ -26,10 +27,12 @@ export class Controller {
             if (e.target.classList.contains('lib-container')) {
                 this.switchLibrary(e.target);
                 this.GameView.updateGameView(this.Model.activeLibrary);
+                this.GameView.expandState = false;
             };
             if (e.target.classList.contains('lib-name')) {
                 this.switchLibrary(e.target.parentElement);
                 this.GameView.updateGameView(this.Model.activeLibrary);
+                this.GameView.expandState = false;
             };
         });
         this.gamePage = document.querySelector('.game-page');
@@ -132,7 +135,6 @@ export class Controller {
             };
         // Otherwise expand the clicked container
         } else {
-            console.log(this.Model.activeLibrary);
             this.switchGame(gameCont);
             this.GameView.expandGame(gameCont, this.Model.activeGame);
             this.GameView.expandState = true;

@@ -36,7 +36,7 @@ class Game {
     // otherwise it is already in the correct format when loaded from the local storage
     // this is because when you try and format the already formatted date it switches day with month
     setDateCompleted = (dateCompleted) => {
-        if (dateCompleted !== '') {
+        if (dateCompleted !== undefined) {
             if (dateCompleted.includes('-')) {
                 this._dateCompleted = format(new Date(dateCompleted), 'dd/MM/yyyy');
             } else {
@@ -156,6 +156,7 @@ export class Model {
         this.activeLibrary.splice(gameIndex, 1, new Game(data, this.activeGame.added));
     };
     delGame = (gameIndex) => this.activeLibrary.splice(gameIndex, 1);
+    // Local storage logic
     // Saves libraries and games inside the local storage every time one of them is updated
     saveData = () => {
         localStorage.setItem('collection', JSON.stringify(this.collection.array));
