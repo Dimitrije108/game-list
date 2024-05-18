@@ -1,3 +1,18 @@
+@font-face {
+    font-family: Gameplay;
+    src: url(assets/fonts/Gameplay.ttf);
+}
+
+@font-face {
+    font-family: PoppinsMedium;
+    src: url(assets/fonts/Poppins-Medium.ttf);
+}
+
+@font-face {
+    font-family: PoppinsRegular;
+    src: url(assets/fonts/Poppins-Regular.ttf);
+}
+
 html,
 body {
     margin: 0;
@@ -5,18 +20,107 @@ body {
     box-sizing: border-box;
     height: 100%;
     width: 100%;
+    font-family: PoppinsMedium;
 }
 
-.container {
+button {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: PoppinsMedium;
+}
+
+button>img {
+    vertical-align: middle;
+}
+
+.page-container {
     display: grid;
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: 1.2fr 6fr;
     height: 100%;
-    background-color: wheat;
+    background-color: rgb(255, 255, 255);
 }
 
+/* SIDEBAR STYLING */
 .sidebar {
-    background-color: gray;
+    padding-top: 0.5rem;
+    background-image: linear-gradient(rgb(140, 204, 174), rgb(255, 255, 255));
 }
+
+.logo {
+    padding: 0.3rem 0 0.3rem 0;
+    font-family: Gameplay;
+    font-size: 1.7rem;
+    letter-spacing: 0.1rem;
+    text-align: center;
+    color: rgb(245, 225, 44);
+    text-shadow: -2px -2px 0 #fffb00, 2px -2px 0 #c9a400, -2px 2px 0 #ff8331, 2px 2px 0 #ff5100;
+}
+/* Default - Collection library button */
+.lib-main {
+    margin: 0.4rem 0;
+    padding: 0.4rem 0.6rem;
+    width: 100%;
+    font-family: PoppinsMedium;
+    font-size: 1.2rem;
+    text-align: left;
+}
+
+.lib-main:hover {
+    /* background-color: rgb(245, 225, 44);
+    box-shadow: 0px -2px 0 #fffb00, 0px 2px 0 #ff8331; */
+    background-color: rgb(224, 209, 248);
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+}
+/* My Libraries field */
+.lib-field {
+    padding: 0.4rem 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lib-text {
+    flex: 1;
+}
+
+.lib-add {
+    border-radius: 4px;
+    line-height: 1;
+    transition: transform 0.4s;
+}
+
+.lib-add:hover {
+    background-color: rgb(224, 209, 248);
+    transform: rotateZ(90deg);
+}
+
+.lib-container {
+    padding: 0.4rem 0.6rem;
+    font-family: PoppinsRegular;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.lib-container:hover {
+    /* background-color: rgb(245, 225, 44);
+    box-shadow: 0px -2px 0 #fffb00, 0px 2px 0 #ff8331; */
+    background-color: rgb(224, 209, 248);
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+.lib-name {
+    flex: 1;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 5rem;
+}
+
+/* GAME PAGE STYLING */
 
 .game-init {
     display: flex;

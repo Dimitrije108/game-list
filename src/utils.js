@@ -1,4 +1,4 @@
-export { createForm, createInput, createDiv, createBtn };
+export { createForm, createInput, createDiv, createBtn, createIcon };
 
 const createForm = () => {
     const newForm = document.createElement('form');
@@ -8,12 +8,12 @@ const createForm = () => {
 
 const createInput = () => {
     const newInput = document.createElement('input');
-    newInput.setAttribute('type', 'text');
-    newInput.setAttribute('id', 'newLib');
-    newInput.setAttribute('name', 'newLib');
-    newInput.setAttribute('placeholder', 'Name');
-    newInput.setAttribute('minlength', '1');
-    newInput.setAttribute('maxlength', '20');
+    newInput.type = 'text';
+    newInput.id = 'newLib';
+    newInput.name = 'newLib';
+    newInput.placeholder = 'Name';
+    newInput.minLength = 1;
+    newInput.maxLength = 30;
     return newInput;
 };
 
@@ -29,4 +29,12 @@ const createBtn = (txtContent, className) => {
     newBtn.textContent = txtContent;
     newBtn.classList.add(className);
     return newBtn;
+};
+
+const createIcon = (alt) => {
+    const newImg = document.createElement('img');
+    newImg.alt = alt;
+    newImg.width = '20';
+    newImg.height = '20';
+    return newImg;
 };

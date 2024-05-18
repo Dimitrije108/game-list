@@ -1,4 +1,6 @@
-import { createForm, createInput, createDiv, createBtn } from "./utils";
+import { createForm, createInput, createDiv, createBtn, createIcon } from "./utils";
+import penIcon from './assets/icons/pen-icon.svg';
+import skullIcon from './assets/icons/skull-icon.svg';
 
 export class LibraryView {
     constructor() {
@@ -18,8 +20,17 @@ export class LibraryView {
     addLibContainer = (name) => {
         const containerDiv = createDiv(undefined, 'lib-container');
         const nameDiv = createDiv(name, 'lib-name');
-        const renameBtn = createBtn('rename', 'lib-rename');
-        const delBtn = createBtn('del', 'lib-del');
+        // Rename button with pen svg icon
+        const renameBtn = createBtn(undefined, 'lib-rename');
+        const penSvg = createIcon('pen svg icon');
+        penSvg.src = penIcon;
+        renameBtn.appendChild(penSvg);
+        // Delete button with trash can svg icon
+        const delBtn = createBtn(undefined, 'lib-del');
+        const trashCanSvg = createIcon('trash can svg icon');
+        trashCanSvg.src = skullIcon;
+        delBtn.appendChild(trashCanSvg);
+
         containerDiv.appendChild(nameDiv);
         containerDiv.appendChild(renameBtn);
         containerDiv.appendChild(delBtn);
