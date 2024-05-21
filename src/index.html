@@ -8,19 +8,22 @@
 <body>
     <div class="page-container">
         <div class="sidebar">
-            <div class="logo">Game List</div>
-            <button class="lib-main">Collection</button>
-            <div class="lib-field">
-                <div class="lib-text">My Libraries</div>
-                <button class="lib-add">
-                    <img src="./assets/icons/add-icon.svg" alt="plus svg icon" width="20" height="20">
+            <div class="logo">Game-List</div>
+            <div class="main-lib-field">
+                <div class="lib-section-title">Main</div>
+                <button class="lib-main">Collection</button>
+            </div>
+            <div class="my-libraries-field">
+                <div class="lib-section-title">My Libraries</div>
+                <button class="lib-add-btn">
+                    <img src="./assets/icons/add.svg" alt="plus svg icon" width="20" height="20">
                 </button>
             </div>
             <div class="lib-tab"></div>
         </div>
         <div class="content">
             <button class="add-game">
-                <img src="./assets/icons/add-icon.svg" alt="plus svg icon" width="30" height="30">
+                <img src="./assets/icons/add.svg" alt="plus svg icon" width="30" height="30">
             </button>
             <dialog class="modal">
                 <form id="form" method="post">
@@ -64,7 +67,7 @@
                         <div class="input-field">
                             <label for="progress">Progress:</label>
                             <select id="progress" name="progress" required>
-                                <option value="" disabled selected>Select state</option>
+                                <option value="" disabled selected>Select status</option>
                                 <option value="Yet to start">Yet to play</option>
                                 <option value="Currently playing">Currently playing</option>
                                 <option value="Completed">Completed</option>
