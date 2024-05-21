@@ -10,7 +10,7 @@ export class Controller {
             this.GameView.updateGameView(this.Model.activeLibrary);
             this.GameView.expandState = false;
         });
-        this.addLibBtn = document.querySelector('.lib-add');
+        this.addLibBtn = document.querySelector('.lib-add-btn');
         // Creates an input for a new library name
         this.addLibBtn.addEventListener('click', () => this.handleAddLibInput());
         this.libTab = document.querySelector('.lib-tab');
@@ -20,9 +20,16 @@ export class Controller {
             this.handleAddLibrary(this.LibraryView.getInputValue());
         });
         this.libTab.addEventListener('click', (e) => {
-            // Delete and rename library buttons
-            e.target.classList.contains('lib-del') && this.handleDelLib(e.target.parentElement);
-            e.target.classList.contains('lib-rename') && this.handleRenameLibrary(e);
+            // Rename library activates from a button click or a click on svg image elements inside the button
+            const renameButton = e.target.closest('.lib-rename');
+            if (renameButton) {
+                this.handleRenameLibrary(renameButton.closest('.lib-container'));
+            };
+            // Delete library activates from a button click or a click on svg image elements inside the button
+            const delButton = e.target.closest('.lib-del');
+            if (delButton) {
+                this.handleDelLib(delButton.parentElement);
+            };
             // Switch the active library to the one clicked
             if (e.target.classList.contains('lib-container')) {
                 this.switchLibrary(e.target);
@@ -36,7 +43,7 @@ export class Controller {
             };
         });
         this.gamePage = document.querySelector('.game-page');
-        // Handles game cont clicks - edit game or expand game
+        // Handles game container clicks - edit game or expand game
         // add del
         this.gamePage.addEventListener('click', (e) => {
             if (e.target.classList.contains('game-edit')) {
@@ -82,16 +89,18 @@ export class Controller {
     };
     // Submitted input field -> rename library or create one
     handleAddLibrary(value) {
-        if (value.length < 1) return;
-        if (this.LibraryView.renameInput) {
-            this.Model.renameLibrary(this.LibraryView.addRenameDiv(value), value);
-            this.Model.saveData();
-            this.LibraryView.renameInput = false;
-        } else {
-            this.Model.addLibrary(value);
-            this.Model.saveData();
-            this.LibraryView.updateLibView(this.Model.getLibraries);
-            this.LibraryView.activeInput = false;
+        const form = document.querySelector('.newForm');
+        if (form.checkValidity()) {
+            if (this.LibraryView.renameInput) {
+                this.Model.renameLibrary(this.LibraryView.addRenameDiv(value), value);
+                this.Model.saveData();
+                this.LibraryView.renameInput = false;
+            } else {
+                this.Model.addLibrary(value);
+                this.Model.saveData();
+                this.LibraryView.updateLibView(this.Model.getLibraries);
+                this.LibraryView.activeInput = false;
+            };
         };
     };
     // Add new library input or add the new library to the system depending on the state

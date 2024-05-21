@@ -1,6 +1,4 @@
-import { createForm, createInput, createDiv, createBtn, createIcon } from "./utils";
-import penIcon from './assets/icons/pen-icon.svg';
-import skullIcon from './assets/icons/skull-icon.svg';
+import { createForm, createInput, createDiv, createBtn, createEditIcon, createTrashIcon } from "./utils";
 
 export class LibraryView {
     constructor() {
@@ -20,17 +18,13 @@ export class LibraryView {
     addLibContainer = (name) => {
         const containerDiv = createDiv(undefined, 'lib-container');
         const nameDiv = createDiv(name, 'lib-name');
-        // Rename button with pen svg icon
+        // Create rename button with edit svg icon
         const renameBtn = createBtn(undefined, 'lib-rename');
-        const penSvg = createIcon('pen svg icon');
-        penSvg.src = penIcon;
-        renameBtn.appendChild(penSvg);
-        // Delete button with trash can svg icon
+        createEditIcon(renameBtn);
+        // Create delete button with trash can svg icon
         const delBtn = createBtn(undefined, 'lib-del');
-        const trashCanSvg = createIcon('trash can svg icon');
-        trashCanSvg.src = skullIcon;
-        delBtn.appendChild(trashCanSvg);
-
+        createTrashIcon(delBtn);
+        
         containerDiv.appendChild(nameDiv);
         containerDiv.appendChild(renameBtn);
         containerDiv.appendChild(delBtn);
@@ -38,7 +32,7 @@ export class LibraryView {
     };
     // Replace current library name div with a rename input field form
     addRenameInput = (e) => {
-        const container = e.target.parentElement;
+        const container = e;
         const currentName = container.querySelector('.lib-name');
         const inputCurrentName = createInput();
         inputCurrentName.value = currentName.textContent;
