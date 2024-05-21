@@ -39,6 +39,7 @@ export class Controller {
         this.gamePage = document.querySelector('.game-page');
         // Handles game container clicks - edit game or expand game
         // add del
+        // NEEDS REFACTORING LIKE THE LIBRARY
         this.gamePage.addEventListener('click', (e) => {
             if (e.target.classList.contains('game-edit')) {
                 this.openEditModal();
