@@ -20,24 +20,18 @@ export class Controller {
             this.handleAddLibrary(this.LibraryView.getInputValue());
         });
         this.libTab.addEventListener('click', (e) => {
-            // Rename library activates from a button click or a click on svg image elements inside the button
             const renameButton = e.target.closest('.lib-rename');
+            const delButton = e.target.closest('.lib-del');
+            const container = e.target.closest('.lib-container');
+            // Rename library activates from a button click or a click on svg image elements inside the button
             if (renameButton) {
                 this.handleRenameLibrary(renameButton.closest('.lib-container'));
-            };
+            } else if (delButton) {
             // Delete library activates from a button click or a click on svg image elements inside the button
-            const delButton = e.target.closest('.lib-del');
-            if (delButton) {
                 this.handleDelLib(delButton.parentElement);
-            };
+            } else if (container) {
             // Switch the active library to the one clicked
-            if (e.target.classList.contains('lib-container')) {
-                this.switchLibrary(e.target);
-                this.GameView.updateGameView(this.Model.activeLibrary);
-                this.GameView.expandState = false;
-            };
-            if (e.target.classList.contains('lib-name')) {
-                this.switchLibrary(e.target.parentElement);
+                this.switchLibrary(container);
                 this.GameView.updateGameView(this.Model.activeLibrary);
                 this.GameView.expandState = false;
             };
