@@ -5,7 +5,18 @@ export class LibraryView {
         this.activeInput = false;
         this.renameInput = false;
         this.libTab = document.querySelector('.lib-tab');
+        this._activeLib = document.querySelector('.lib-main');
+    };
+
+    get activeLib() {
+        return this._activeLib;
     }
+
+    set activeLib(container) {
+        this._activeLib = container;
+    };
+    // Toggle active library styling to indicate if a library is active
+    toggleActiveLibStyle = () => this.activeLib.classList.toggle('active-lib');
     
     addInput = () => {
         const form = createForm();
@@ -34,7 +45,7 @@ export class LibraryView {
             const svg = delBtn.querySelector('.trash-icon');
             svg.style.fill = 'red';
         });
-
+        // Change it back to standard
         delBtn.addEventListener('mouseout', () => {
             const svg = delBtn.querySelector('.trash-icon');
             svg.style.fill = '#111918';

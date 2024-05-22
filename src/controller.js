@@ -5,9 +5,11 @@ export class Controller {
         this.LibraryView = LibraryView;
         this.collection = document.querySelector('.lib-main');
         // Switches to the Collection(main) library
-        this.collection.addEventListener('click', () => {
-            this.switchLibrary();
+        this.collection.addEventListener('click', (e) => {
+            this.LibraryView.toggleActiveLibStyle();
+            this.switchLibrary(e.target);
             this.GameView.updateGameView(this.Model.activeLibrary);
+            this.LibraryView.toggleActiveLibStyle();
             this.GameView.expandState = false;
         });
         this.addLibBtn = document.querySelector('.lib-add-btn');
@@ -31,8 +33,10 @@ export class Controller {
                 this.handleDelLib(delButton.parentElement);
             } else if (container) {
             // Switch the active library to the one clicked
+                this.LibraryView.toggleActiveLibStyle();
                 this.switchLibrary(container);
                 this.GameView.updateGameView(this.Model.activeLibrary);
+                this.LibraryView.toggleActiveLibStyle();
                 this.GameView.expandState = false;
             };
         });
@@ -160,7 +164,10 @@ export class Controller {
     // Displays modal to edit with game values filled in
     openEditModal = () => this.GameView.editGameModal(this.Model.activeGame);
     // Clicked library becomes the active library
-    switchLibrary = (e) => this.Model.activeLibrary = this.LibraryView.clickedLib(e);
+    switchLibrary = (container) => {
+        this.Model.activeLibrary = this.LibraryView.clickedLib(container);
+        this.LibraryView.activeLib = container;
+    };
     // Clicked game becomes the active game
     switchGame = (e) => this.Model.activeGame = this.GameView.clickedGame(e);
     // Delete library and update view
