@@ -13,6 +13,14 @@
     src: url(assets/fonts/Poppins-Regular.ttf);
 }
 
+:root {
+    --sidebar-background-color: rgb(232, 225, 255);
+    --sidebar-hover-color: rgb(239, 234, 255);
+    --sidebar-secondary-hover-color: rgb(242, 239, 255);
+    --sidebar-padding: 0.4rem 0.6rem;
+    --border-radius: 6px;
+}
+
 html,
 body {
     margin: 0;
@@ -40,17 +48,10 @@ button>img {
     vertical-align: middle;
 }
 
-.page-container {
-    display: grid;
-    grid-template-columns: 1.2fr 6fr;
-    height: 100%;
-    background-color: rgb(255, 255, 255);
-}
-
 /* SIDEBAR STYLING */
 .sidebar {
     padding: 0.5rem;
-    background-color: rgb(232, 225, 255);
+    background-color: var(--sidebar-background-color);
 }
 
 .logo {
@@ -63,25 +64,25 @@ button>img {
 }
 
 .main-lib-field {
-    padding: 0.4rem 0.6rem;
+    padding: var(--sidebar-padding);
 }
-/* Default - Collection library button */
+/* Collection library button */
 .lib-main {
-    padding: 0.4rem 0.6rem;
+    padding: var(--sidebar-padding);
     width: 100%;
     font-family: GothicPixels;
     font-size: 1.5rem;
-    border-radius: 4px;
+    border-radius: var(--border-radius);
 }
 
 .lib-main:hover {
-    color: rgb(255, 255, 255);
-    background-color: rgb(192, 174, 253);
+    color: #ffffff;
+    background-color: rgb(206, 191, 255);
     text-shadow: 3px 3px #ce53ff;
 }
 
 .my-libraries-field {
-    padding: 0.4rem 0.6rem;
+    padding: var(--sidebar-padding);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -99,22 +100,22 @@ button>img {
 }
 
 .lib-add-btn:hover {
-    background-color: rgb(239, 234, 255);
+    background-color: var(--sidebar-hover-color);
     transform: rotateZ(90deg);
 }
 
 .lib-container {
-    padding: 0.4rem 0.6rem;
+    padding: var(--sidebar-padding);
     font-size: 0.9rem;
     font-family: PoppinsRegular;
-    border-radius: 4px;
+    border-radius: var(--border-radius);
     display: flex;
     align-items: center;
     cursor: pointer;
 }
 
 .lib-container:hover {
-    background-color: rgb(239, 234, 255);
+    background-color: var(--sidebar-hover-color);
 }
 
 .lib-name {
@@ -132,10 +133,25 @@ button>img {
 }
 
 .lib-container > button:hover {
-    background-color: rgb(242, 239, 255);
+    background-color: var(--sidebar-secondary-hover-color);
+}
+
+.active-lib {
+    background-color: var(--sidebar-hover-color);
+}
+
+.active-lib:hover {
+    background-color: var(--sidebar-secondary-hover-color);
 }
 
 /* GAME PAGE STYLING */
+
+.page-container {
+    display: grid;
+    grid-template-columns: 1.2fr 6fr;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+}
 
 .game-init {
     display: flex;
