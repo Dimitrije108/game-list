@@ -1,4 +1,4 @@
-import { createForm, createInput, createDiv, createBtn, createEditIcon, createTrashIcon } from "./utils";
+import { createForm, createInput, createDiv, createBtn, createEditIcon, createTrashIcon, createCancelIcon } from "./utils";
 
 export class LibraryView {
     constructor() {
@@ -19,12 +19,22 @@ export class LibraryView {
     toggleActiveLibStyle = () => this.activeLib.classList.toggle('active-lib');
     
     addInput = () => {
+        const containerDiv = createDiv(undefined, 'input-container');
         const form = createForm();
         form.appendChild(createInput());
-        this.libTab.appendChild(form);
+        containerDiv.appendChild(form);
+        createCancelIcon(containerDiv);
+        this.libTab.appendChild(containerDiv);
+        
+        const svg = document.querySelector('.cancel-svg');
+        const svgStroke = svg.querySelector('.cancel-svg-style');
+        // Change cancel icon color to red when hovered over
+        svg.addEventListener('mouseover', () => svgStroke.style.stroke = 'red');
+        // Change it back to standard
+        svg.addEventListener('mouseout', () => svgStroke.style.stroke = '#000000');
     };
 
-    getInputValue = () => document.querySelector('#newLib').value;
+    getInputValue = () => document.querySelector('#lib-input').value;
     // Create and append library container
     addLibContainer = (name) => {
         const containerDiv = createDiv(undefined, 'lib-container');
@@ -63,7 +73,7 @@ export class LibraryView {
     };
     // Replace the input field with the renamed div
     addRenameDiv = (value) => {
-        const form = document.querySelector('.newForm');
+        const form = document.querySelector('.lib-form');
         const renamedDiv = createDiv(value, 'lib-name');
         form.replaceWith(renamedDiv);
         return this.clickedLib(renamedDiv.parentElement);
