@@ -41,9 +41,11 @@ export class LibraryView {
         const nameDiv = createDiv(name, 'lib-name');
         // Create rename button with edit svg icon
         const renameBtn = createBtn(undefined, 'lib-rename');
+        renameBtn.title = 'Rename';
         createEditIcon(renameBtn);
         // Create delete button with trash can svg icon
         const delBtn = createBtn(undefined, 'lib-del');
+        delBtn.title = 'Delete';
         createTrashIcon(delBtn);
 
         containerDiv.appendChild(nameDiv);
