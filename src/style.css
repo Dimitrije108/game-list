@@ -18,7 +18,7 @@
     --sidebar-hover-color: rgb(214, 202, 255);
     --sidebar-active-hover-color: rgb(199, 182, 255);
     --sidebar-secondary-color: rgb(255, 255, 255);
-    --sidebar-padding: 0.4rem 0.6rem;
+    --padding: 0.4rem 0.6rem;
     --border-radius: 6px;
 }
 
@@ -53,6 +53,12 @@ button>img {
     vertical-align: middle;
 }
 
+.page-container {
+    display: grid;
+    grid-template-columns: 1.2fr 6fr;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+}
 /* SIDEBAR STYLING */
 .sidebar {
     padding: 0.5rem;
@@ -69,11 +75,11 @@ button>img {
 }
 
 .main-lib-field {
-    padding: var(--sidebar-padding);
+    padding: var(--padding);
 }
 /* Collection library button */
 .lib-main {
-    padding: var(--sidebar-padding);
+    padding: var(--padding);
     width: 100%;
     font-family: GothicPixels;
     font-size: 1.5rem;
@@ -87,7 +93,7 @@ button>img {
 }
 
 .my-libraries-field {
-    padding: var(--sidebar-padding);
+    padding: var(--padding);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -110,7 +116,7 @@ button>img {
 }
 
 .lib-container {
-    padding: var(--sidebar-padding);
+    padding: var(--padding);
     font-size: 0.9rem;
     font-family: PoppinsRegular;
     border-radius: var(--border-radius);
@@ -181,13 +187,49 @@ button>img {
     right: 0.4rem;
     padding: 0.2rem;
 }
-
 /* GAME PAGE STYLING */
-.page-container {
-    display: grid;
-    grid-template-columns: 1.2fr 6fr;
-    height: 100%;
-    background-color: rgb(255, 255, 255);
+.content {
+    padding: var(--padding);
+}
+
+.game-page-lib {
+    padding: var(--padding);
+    display: flex;
+    align-items: center;
+}
+
+.game-page-lib-name {
+    font-size: 1.4rem;
+    flex: 1;
+}
+
+.add-game {
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: baseline;
+    align-items: baseline;
+}
+
+.add-game > img {
+    transition: transform 0.4s;
+}
+
+.add-game > img:hover {
+    transform: rotateZ(90deg);
+}
+
+.add-game > p {
+    margin: 0;
+    text-align: start;
+}
+
+.game-container {
+    font-family: PoppinsRegular;
+    margin: 0.6rem 0 1rem 0;
+    padding: var(--padding);
+    background-color: beige;
+    cursor: pointer;
+    border-radius: var(--border-radius);
 }
 
 .game-init {
