@@ -15,8 +15,9 @@
 
 :root {
     --sidebar-background-color: rgb(232, 225, 255);
-    --sidebar-hover-color: rgb(239, 234, 255);
-    --sidebar-secondary-hover-color: rgb(242, 239, 255);
+    --sidebar-hover-color: rgb(214, 202, 255);
+    --sidebar-active-hover-color: rgb(199, 182, 255);
+    --sidebar-secondary-color: rgb(255, 255, 255);
     --sidebar-padding: 0.4rem 0.6rem;
     --border-radius: 6px;
 }
@@ -104,7 +105,7 @@ button>img {
 }
 
 .lib-add-btn:hover {
-    background-color: var(--sidebar-hover-color);
+    background-color: var(--sidebar-secondary-color);
     transform: rotateZ(90deg);
 }
 
@@ -137,7 +138,7 @@ button>img {
 }
 
 .lib-container > button:hover {
-    background-color: var(--sidebar-secondary-hover-color);
+    background-color: var(--sidebar-secondary-color);
 }
 
 .active-lib {
@@ -145,7 +146,7 @@ button>img {
 }
 
 .active-lib:hover {
-    background-color: var(--sidebar-secondary-hover-color);
+    background-color: var(--sidebar-active-hover-color);
 }
 
 .input-container {
@@ -163,7 +164,7 @@ button>img {
     box-sizing: border-box;
     font-family: PoppinsRegular;
     font-size: 0.9rem;
-    background-color: var(--sidebar-secondary-hover-color);
+    background-color: var(--sidebar-hover-color);
     width: 100%;
     padding: 0.5rem 2.3rem 0.5rem 0.6rem;
     border: none;
