@@ -42,30 +42,28 @@ export class GameView {
         const nameCont = createDiv(undefined, 'game-stat-container');
         const nameValue = createDiv(game.title, 'game-name');
         nameCont.appendChild(nameValue);
-        // Display must play only if it's checked
+        // Display must play if it's checked
         if (game.mustPlay !== '') {
             const mustPlay = createDiv(game.mustPlay, 'must-play');
             nameCont.appendChild(mustPlay);
         };
 
+        const releasedCont = createDiv(undefined, 'game-stat-container');
+        const releasedValue = createDiv(game.releaseDate, 'value');
+        releasedCont.appendChild(releasedValue);
+
         const genreCont = createDiv(undefined, 'game-stat-container');
-        const genreLabel = createDiv('Genre:', 'label');
         const genreValue = createDiv(game.genre, 'value');
-        genreCont.appendChild(genreLabel);
         genreCont.appendChild(genreValue);
 
-        const addedCont = createDiv(undefined, 'game-stat-container');
-        const addedLabel = createDiv('Added:', 'label');
-        const addedValue = createDiv(game.added, 'value');
-        addedCont.appendChild(addedLabel);
-        addedCont.appendChild(addedValue);
-
+        const progressCont = createDiv(undefined, 'game-stat-container');
         const progressValue = createDiv(game.progress, 'value');
+        progressCont.appendChild(progressValue);
         
         initView.appendChild(nameCont);
+        initView.appendChild(releasedCont);
         initView.appendChild(genreCont);
-        initView.appendChild(addedCont);
-        initView.appendChild(progressValue);
+        initView.appendChild(progressCont);
         contDiv.appendChild(initView);
         this.gamePage.appendChild(contDiv);
     };
@@ -73,16 +71,16 @@ export class GameView {
     expandGame = (gameCont, game) => {
         const expandView = createDiv(undefined, 'game-expand');
 
-        const releasedCont = createDiv(undefined, 'game-stat-container');
-        const releasedLabel = createDiv('Released:', 'label');
-        const releasedValue = createDiv(game.releaseDate, 'value');
-        releasedCont.appendChild(releasedLabel);
-        releasedCont.appendChild(releasedValue);
-        expandView.appendChild(releasedCont);
+        const addedCont = createDiv(undefined, 'game-stat-container');
+        const addedLabel = createDiv('Added:', 'label');
+        const addedValue = createDiv(game.added, 'value');
+        addedCont.appendChild(addedLabel);
+        addedCont.appendChild(addedValue);
+        expandView.appendChild(addedCont);
         // Display date completed only if it's filled out
         if (game.dateCompleted !== '') {
             const dateCompletedCont = createDiv(undefined, 'game-stat-container');
-            const dateCompletedLabel = createDiv('Completed on:', 'label');
+            const dateCompletedLabel = createDiv('Completed:', 'label');
             const dateCompletedValue = createDiv(game.dateCompleted, 'value');
             dateCompletedCont.appendChild(dateCompletedLabel);
             dateCompletedCont.appendChild(dateCompletedValue);
@@ -92,7 +90,7 @@ export class GameView {
         if (game.rating !== '') {
             const ratingCont = createDiv(undefined, 'game-stat-container');
             const ratingLabel = createDiv('Your Rating:', 'label');
-            const ratingValue = createDiv(game.rating, 'value');
+            const ratingValue = createDiv(`${game.rating}/10`, 'value');
             ratingCont.appendChild(ratingLabel);
             ratingCont.appendChild(ratingValue);
             expandView.appendChild(ratingCont);
