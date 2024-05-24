@@ -8,7 +8,7 @@ export class Controller {
         this.collection.addEventListener('click', (e) => {
             this.LibraryView.toggleActiveLibStyle();
             this.switchLibrary(e.target);
-            this.GameView.updateGameView(this.Model.activeLibrary);
+            this.GameView.updateGameView(this.Model.activeLibrary.array, this.Model.activeLibrary.name);
             this.LibraryView.toggleActiveLibStyle();
             this.GameView.expandState = false;
         });
@@ -36,7 +36,7 @@ export class Controller {
             // Switch the active library to the one clicked
                 this.LibraryView.toggleActiveLibStyle();
                 this.switchLibrary(container);
-                this.GameView.updateGameView(this.Model.activeLibrary);
+                this.GameView.updateGameView(this.Model.activeLibrary.array, this.Model.activeLibrary.name);
                 this.LibraryView.toggleActiveLibStyle();
                 this.GameView.expandState = false;
             };
@@ -86,7 +86,7 @@ export class Controller {
             this.Model.addGame(this.GameView.getFormData());
             this.Model.saveData();
             this.GameView.modal.close();
-            this.GameView.updateGameView(this.Model.activeLibrary);
+            this.GameView.updateGameView(this.Model.activeLibrary.array, this.Model.activeLibrary.name);
             form.reset();
             this.GameView.expandState = false;
         };
@@ -139,7 +139,7 @@ export class Controller {
         const gameCont = e.target.closest('.game-container');
         if (this.GameView.expandState) {
             // Close expand container if it's already open and clicked on again
-            if (this.Model.activeLibrary.indexOf(this.Model.activeGame) === this.GameView.clickedGame(gameCont)) {
+            if (this.Model.activeLibrary.array.indexOf(this.Model.activeGame) === this.GameView.clickedGame(gameCont)) {
                 document.querySelector('.game-expand').remove();
                 this.GameView.expandState = false;
             // Close the open one and expand the clicked one
@@ -163,7 +163,7 @@ export class Controller {
             this.Model.editGame(this.GameView.getFormData());
             this.Model.saveData();
             this.GameView.modal.close();
-            this.GameView.updateGameView(this.Model.activeLibrary);
+            this.GameView.updateGameView(this.Model.activeLibrary.array, this.Model.activeLibrary.name);
             form.reset();
             this.GameView.expandState = false;
         };
@@ -190,7 +190,7 @@ export class Controller {
         if (confirm("Are you sure you want to remove this game?")) {
             this.Model.delGame(this.GameView.clickedGame(e));
             this.Model.saveData();
-            this.GameView.updateGameView(this.Model.activeLibrary);
+            this.GameView.updateGameView(this.Model.activeLibrary.array, this.Model.activeLibrary.name);
             this.GameView.expandState = false;
         };
     };
@@ -199,7 +199,7 @@ export class Controller {
         if (localStorage.getItem("collection") || localStorage.getItem("libraries")) {
             this.Model.loadData();
             this.LibraryView.updateLibView(this.Model.getLibraries);
-            this.GameView.updateGameView(this.Model.activeLibrary);
+            this.GameView.updateGameView(this.Model.activeLibrary.array, this.Model.activeLibrary.name);
         } else {
             this.Model.saveData();
         };

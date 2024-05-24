@@ -39,12 +39,14 @@ export class GameView {
         const contDiv = createDiv(undefined, 'game-container');
         const initView = createDiv(undefined, 'game-init');
 
-        const nameCont = createDiv(undefined, 'game-stat-container');
+        const nameCont = createDiv(undefined, 'game-name-container');
+        nameCont.classList.add('center-name');
         const nameValue = createDiv(game.title, 'game-name');
         nameCont.appendChild(nameValue);
         // Display must play if it's checked
         if (game.mustPlay !== '') {
             const mustPlay = createDiv(game.mustPlay, 'must-play');
+            nameCont.classList.remove('center-name');
             nameCont.appendChild(mustPlay);
         };
 
@@ -132,8 +134,9 @@ export class GameView {
         return clickedGame;
     };
     // Iterates over library array and displays all game objects inside
-    updateGameView = (activeLibrary) => {
+    updateGameView = (activeLibrary, libName) => {
         this.gamePage.textContent = '';
         activeLibrary.forEach((game) => this.addGame(game));
+        document.querySelector('.game-page-lib-name').textContent = libName;
     };
 };

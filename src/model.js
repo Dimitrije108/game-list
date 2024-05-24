@@ -116,7 +116,7 @@ export class Model {
         this._collection = new Library('Collection');
         // User created libraries
         this._libraries = [];
-        this._activeLibrary = this._collection.array;
+        this._activeLibrary = this._collection;
         this._activeGame = '';
     };
 
@@ -133,7 +133,7 @@ export class Model {
     };
 
     set activeLibrary(libIndex) {
-        this._activeLibrary = libIndex >= 0 ? this._libraries[libIndex].array : this._collection.array;
+        this._activeLibrary = libIndex >= 0 ? this._libraries[libIndex] : this._collection;
     };
 
     get activeGame() {
@@ -142,7 +142,7 @@ export class Model {
 
     set activeGame(gameIndex) {
         if (gameIndex >= 0) {
-            this._activeGame = this._activeLibrary[gameIndex];
+            this._activeGame = this._activeLibrary.array[gameIndex];
         };
     };
     // Library methods
