@@ -223,6 +223,20 @@ button>img {
     text-align: start;
 }
 
+.game-info-header {
+    display: flex;
+    padding: var(--padding);
+    background-color: aliceblue;
+}
+
+.game-info-header > div {
+    width: 15%;
+}
+/* Title takes up more space than the others */
+.game-info-header div:first-child {
+    flex: 1;
+}
+
 .game-container {
     font-family: PoppinsRegular;
     margin: 0.6rem 0 1rem 0;
@@ -234,7 +248,18 @@ button>img {
 
 .game-init {
     display: flex;
-    justify-content: space-between;
+}
+
+.game-stat-container {
+    width: 15%;
+}
+
+.game-init div:first-child {
+    flex: 1;
+}
+
+.game-name {
+    font-family: PoppinsMedium;
 }
 
 .game-expand {
