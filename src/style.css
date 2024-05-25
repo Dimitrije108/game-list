@@ -198,9 +198,20 @@ button>img {
     align-items: center;
 }
 
-.game-page-lib-name {
-    font-size: 1.4rem;
+.lib-info {
+    display: flex;
     flex: 1;
+    align-items: baseline;
+}
+
+.lib-info-name {
+    font-size: 1.4rem;
+}
+
+.lib-info-number {
+    font-family: PoppinsRegular;
+    font-size: 0.9rem;
+    margin-left: 1rem;
 }
 
 .add-game {
@@ -288,7 +299,8 @@ button>img {
 }
 
 .game-expand {
-    margin-top: 1rem;
+    margin-top: 0.8rem;
+    margin-bottom: 0.4rem;
     display: flex;
     justify-content: flex-end;
     align-items: center;

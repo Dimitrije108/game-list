@@ -151,6 +151,7 @@ export class GameView {
     updateGameView = (activeLibrary, libName) => {
         this.gamePage.textContent = '';
         activeLibrary.forEach((game) => this.addGame(game));
-        document.querySelector('.game-page-lib-name').textContent = libName;
+        document.querySelector('.lib-info-name').textContent = libName;
+        document.querySelector('.lib-info-number').textContent = `(${activeLibrary.length} games)`;
     };
 };
