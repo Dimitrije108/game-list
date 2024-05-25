@@ -1,5 +1,5 @@
 import { createDiv, createBtn, createEditIcon, createTrashIcon } from "./utils";
-const { format } = require("date-fns");
+const { format, parse } = require("date-fns");
 
 export class GameView {
     constructor() {
@@ -130,7 +130,8 @@ export class GameView {
         document.querySelector('#progress').value = game.progress;
         // Date has to be reformatted into the original so it can be used as set value
         if (game.dateCompleted !== '') {
-            const reformatted = format(new Date(game.dateCompleted), 'yyyy-dd-MM');
+            const parsedDate = parse(game.dateCompleted, 'dd/MM/yyyy', new Date());
+            const reformatted = format(parsedDate, 'yyyy-MM-dd');
             document.querySelector('#dateCompleted').value = reformatted;
         };
         document.querySelector('#rating').value = game.rating;
