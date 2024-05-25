@@ -150,12 +150,12 @@ export class Model {
     renameLibrary = (libIndex, name) => this.getLibraries[libIndex].name = name;
     delLibrary = (libIndex) => this.getLibraries.splice(libIndex, 1);
     // Game methods
-    addGame = (data) => this.activeLibrary.push(new Game(data));
+    addGame = (data) => this.activeLibrary.array.push(new Game(data));
     editGame = (data) => {
         const gameIndex = this.activeLibrary.indexOf(this.activeGame);
         this.activeLibrary.splice(gameIndex, 1, new Game(data, this.activeGame.added));
     };
-    delGame = (gameIndex) => this.activeLibrary.splice(gameIndex, 1);
+    delGame = (gameIndex) => this.activeLibrary.array.splice(gameIndex, 1);
     // Local storage logic
     // Saves libraries and games inside the local storage every time one of them is updated
     saveData = () => {

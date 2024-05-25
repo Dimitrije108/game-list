@@ -42,26 +42,22 @@ export class LibraryView {
         // Create rename button with edit svg icon
         const renameBtn = createBtn(undefined, 'lib-rename');
         renameBtn.title = 'Rename';
-        createEditIcon(renameBtn);
+        createEditIcon(renameBtn, 18);
         // Create delete button with trash can svg icon
         const delBtn = createBtn(undefined, 'lib-del');
         delBtn.title = 'Delete';
-        createTrashIcon(delBtn);
+        createTrashIcon(delBtn, 18);
 
         containerDiv.appendChild(nameDiv);
         containerDiv.appendChild(renameBtn);
         containerDiv.appendChild(delBtn);
         this.libTab.appendChild(containerDiv);
+
+        const svg = delBtn.querySelector('.trash-icon');
         // Change trash icon color to red when hovering over button
-        delBtn.addEventListener('mouseover', () => {
-            const svg = delBtn.querySelector('.trash-icon');
-            svg.style.fill = 'red';
-        });
+        delBtn.addEventListener('mouseover', () => svg.style.fill = 'red');
         // Change it back to standard
-        delBtn.addEventListener('mouseout', () => {
-            const svg = delBtn.querySelector('.trash-icon');
-            svg.style.fill = '#111918';
-        });
+        delBtn.addEventListener('mouseout', () => svg.style.fill = '#111918');
     };
     // Replace current library name div with a rename input field form
     addRenameInput = (e) => {

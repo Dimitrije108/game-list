@@ -1,4 +1,4 @@
-import { createDiv, createBtn } from "./utils";
+import { createDiv, createBtn, createEditIcon, createTrashIcon } from "./utils";
 const { format } = require("date-fns");
 
 export class GameView {
@@ -73,7 +73,7 @@ export class GameView {
     expandGame = (gameCont, game) => {
         const expandView = createDiv(undefined, 'game-expand');
 
-        const addedCont = createDiv(undefined, 'game-stat-container');
+        const addedCont = createDiv(undefined, 'game-expand-container');
         const addedLabel = createDiv('Added:', 'label');
         const addedValue = createDiv(game.added, 'value');
         addedCont.appendChild(addedLabel);
@@ -81,7 +81,7 @@ export class GameView {
         expandView.appendChild(addedCont);
         // Display date completed only if it's filled out
         if (game.dateCompleted !== '') {
-            const dateCompletedCont = createDiv(undefined, 'game-stat-container');
+            const dateCompletedCont = createDiv(undefined, 'game-expand-container');
             const dateCompletedLabel = createDiv('Completed:', 'label');
             const dateCompletedValue = createDiv(game.dateCompleted, 'value');
             dateCompletedCont.appendChild(dateCompletedLabel);
@@ -90,7 +90,7 @@ export class GameView {
         };
         // Display rating only if it's filled out
         if (game.rating !== '') {
-            const ratingCont = createDiv(undefined, 'game-stat-container');
+            const ratingCont = createDiv(undefined, 'game-expand-container');
             const ratingLabel = createDiv('Your Rating:', 'label');
             const ratingValue = createDiv(`${game.rating}/10`, 'value');
             ratingCont.appendChild(ratingLabel);
@@ -98,8 +98,20 @@ export class GameView {
             expandView.appendChild(ratingCont);
         };
 
-        const editBtn = createBtn('edit', 'game-edit');
-        const delBtn = createBtn('del', 'game-del');
+        const editBtn = createBtn(undefined, 'game-edit');
+        editBtn.title = 'Edit';
+        createEditIcon(editBtn, 24);
+
+        const delBtn = createBtn(undefined, 'game-del');
+        delBtn.title = 'Delete';
+        createTrashIcon(delBtn, 24);
+
+        const svg = delBtn.querySelector('.trash-icon');
+        // Change trash icon color to red when hovering over button
+        delBtn.addEventListener('mouseover', () => svg.style.fill = 'red');
+        // Change it back to standard
+        delBtn.addEventListener('mouseout', () => svg.style.fill = '#111918');
+
         expandView.appendChild(editBtn);
         expandView.appendChild(delBtn);
         gameCont.appendChild(expandView);

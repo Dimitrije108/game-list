@@ -33,11 +33,11 @@ const createBtn = (txtContent, className) => {
     return newBtn;
 };
 
-const createEditIcon = (container) => {
+const createEditIcon = (container, size) => {
     const svg = d3.select(container)
         .append("svg")
-        .attr("width", 18)
-        .attr("height", 18)
+        .attr("width", size)
+        .attr("height", size)
         .attr("viewBox", "0 0 24 24")
         .attr("class", "lib-rename");
 
@@ -66,11 +66,11 @@ const createEditIcon = (container) => {
         .attr("stroke-width", "1");
 };
 
-const createTrashIcon = (container) => {
+const createTrashIcon = (container, size) => {
     const svg = d3.select(container)
         .append("svg")
-        .attr("width", 18)
-        .attr("height", 18)
+        .attr("width", size)
+        .attr("height", size)
         .attr("viewBox", "0 0 32 32")
         .attr("xmlns", "http://www.w3.org/2000/svg")
         .attr("fill", "#000000");

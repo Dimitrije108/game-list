@@ -140,11 +140,11 @@ button>img {
 .lib-container > button {
     margin-left: 0.1rem;
     padding: 0.2rem;
-    border-radius: 20px;
+    border-radius: var(--border-radius);
 }
 
 .lib-container > button:hover {
-    background-color: var(--sidebar-secondary-color);
+    background-color: var(--sidebar-background-color);
 }
 
 .active-lib {
@@ -154,7 +154,7 @@ button>img {
 .active-lib:hover {
     background-color: var(--sidebar-active-hover-color);
 }
-
+/* Input field styling */
 .input-container {
     position: relative;
     display: flex;
@@ -193,7 +193,7 @@ button>img {
 }
 
 .game-page-lib {
-    padding: var(--padding);
+    padding: 0.4rem 0 0.4rem 0.6rem;
     display: flex;
     align-items: center;
 }
@@ -204,23 +204,28 @@ button>img {
 }
 
 .add-game {
-    font-size: 1.2rem;
+    font-family: PoppinsRegular;
+    font-size: 1.4rem;
+    padding: 0.3rem 0.4rem;
+    background-color: var(--sidebar-background-color);
+    border-radius: var(--border-radius);
     display: flex;
-    justify-content: baseline;
-    align-items: baseline;
+    justify-content: center;
+    align-items: center;
 }
 
-.add-game > img {
+.add-game:hover {
+    background-color: var(--sidebar-hover-color);
+}
+
+.add-game:hover > img {
     transition: transform 0.4s;
-}
-
-.add-game > img:hover {
     transform: rotateZ(90deg);
 }
 
 .add-game > p {
     margin: 0;
-    text-align: start;
+    padding-left: 0.2rem;
 }
 
 .game-info-header {
@@ -228,13 +233,13 @@ button>img {
     padding: var(--padding);
     background-color: aliceblue;
 }
-
-.game-info-header > div {
-    width: 15%;
-}
 /* Title takes up more space than the others */
 .game-info-header div:first-child {
     flex: 1;
+}
+
+.game-info-header > div {
+    width: 17%;
 }
 
 .game-container {
@@ -250,19 +255,49 @@ button>img {
     display: flex;
 }
 
-.game-stat-container {
-    width: 15%;
+.game-name-container {
+    flex: 1;
+    height: 43px;
 }
 
-.game-init div:first-child {
-    flex: 1;
+.game-stat-container {
+    width: 17%;
+    display: flex;
+    align-items: center;
 }
 
 .game-name {
     font-family: PoppinsMedium;
 }
 
-.game-expand {
+.center-name {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+}
+
+.must-play {
+    font-size: 0.8rem;
+}
+
+.game-expand {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.game-expand-container {
+    width: 17%;
+}
+
+.game-edit,
+.game-del {
+    margin-left: 0.2rem;
+    padding: 0.2rem;
+    border-radius: var(--border-radius);
+}
+
+.game-edit:hover,
+.game-del:hover {
+    background-color: rgb(255, 255, 255);
 }
