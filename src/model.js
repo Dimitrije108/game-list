@@ -152,8 +152,8 @@ export class Model {
     // Game methods
     addGame = (data) => this.activeLibrary.array.push(new Game(data));
     editGame = (data) => {
-        const gameIndex = this.activeLibrary.indexOf(this.activeGame);
-        this.activeLibrary.splice(gameIndex, 1, new Game(data, this.activeGame.added));
+        const gameIndex = this.activeLibrary.array.indexOf(this.activeGame);
+        this.activeLibrary.array.splice(gameIndex, 1, new Game(data, this.activeGame.added));
     };
     delGame = (gameIndex) => this.activeLibrary.array.splice(gameIndex, 1);
     // Local storage logic
