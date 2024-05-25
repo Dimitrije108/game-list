@@ -155,6 +155,11 @@ export class GameView {
         this.gamePage.textContent = '';
         activeLibrary.forEach((game) => this.addGame(game));
         document.querySelector('.lib-info-name').textContent = libName;
-        document.querySelector('.lib-info-number').textContent = `(${activeLibrary.length} games)`;
+        // display the number of games in a library (1 'game' or multiple 'games')
+        if (activeLibrary.length === 1) {
+            document.querySelector('.lib-info-number').textContent = `(1 game)`;
+        } else {
+            document.querySelector('.lib-info-number').textContent = `(${activeLibrary.length} games)`;
+        };
     };
 };
