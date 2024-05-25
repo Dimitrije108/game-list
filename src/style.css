@@ -284,10 +284,23 @@ button>img {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    position: relative;
 }
 
 .game-expand-container {
     width: 17%;
+}
+
+.game-edit {
+    position: absolute;
+    bottom: 0.1rem;
+    right: 2rem;
+}
+
+.game-del {
+    position: absolute;
+    bottom: 0.1rem;
+    right: 0.1rem;
 }
 
 .game-edit,

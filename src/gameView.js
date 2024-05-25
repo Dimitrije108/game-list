@@ -100,11 +100,11 @@ export class GameView {
 
         const editBtn = createBtn(undefined, 'game-edit');
         editBtn.title = 'Edit';
-        createEditIcon(editBtn, 24);
+        createEditIcon(editBtn, 22);
 
         const delBtn = createBtn(undefined, 'game-del');
         delBtn.title = 'Delete';
-        createTrashIcon(delBtn, 24);
+        createTrashIcon(delBtn, 22);
 
         const svg = delBtn.querySelector('.trash-icon');
         // Change trash icon color to red when hovering over button
