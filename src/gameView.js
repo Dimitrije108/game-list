@@ -51,8 +51,10 @@ export class GameView {
         };
 
         const releasedCont = createDiv(undefined, 'game-stat-container');
-        const releasedValue = createDiv(game.releaseDate, 'value');
-        releasedCont.appendChild(releasedValue);
+        const numberPlacement = createDiv(undefined, 'game-number-container');
+        const releasedValue = createDiv(game.releaseDate, 'released-value');
+        numberPlacement.appendChild(releasedValue);
+        releasedCont.appendChild(numberPlacement);
 
         const genreCont = createDiv(undefined, 'game-stat-container');
         const genreValue = createDiv(game.genre, 'value');
@@ -100,11 +102,11 @@ export class GameView {
 
         const editBtn = createBtn(undefined, 'game-edit');
         editBtn.title = 'Edit';
-        createEditIcon(editBtn, 22);
+        createEditIcon(editBtn, 20);
 
         const delBtn = createBtn(undefined, 'game-del');
         delBtn.title = 'Delete';
-        createTrashIcon(delBtn, 22);
+        createTrashIcon(delBtn, 20);
 
         const svg = delBtn.querySelector('.trash-icon');
         // Change trash icon color to red when hovering over button
