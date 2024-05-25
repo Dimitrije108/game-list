@@ -46,19 +46,28 @@ export class Controller {
             }
         });
         this.gamePage = document.querySelector('.game-page');
-        // Handles game container clicks - edit game or expand game
-        // add del
-        // NEEDS REFACTORING LIKE THE LIBRARY
+        // Handles game container clicks - edit, delete or expand game
         this.gamePage.addEventListener('click', (e) => {
-            if (e.target.classList.contains('game-edit')) {
+            const editButton = e.target.closest('.game-edit');
+            const delButton = e.target.closest('.game-del');
+            const container = e.target.closest('.game-container');
+
+            if (editButton) {
                 this.openEditModal();
-            } else if (e.target.classList.contains('game-del')) {
-                this.handleDelGame(e.target.closest('.game-container'));
-            } else if (e.target.closest('.game-container')) {
-                this.handleExpandGame(e);
+            } else if (delButton) {
+                this.handleDelGame(container);
+            } else if (container) {
+                this.handleExpandGame(container);
             };
         });
         this.GameView.modal.addEventListener('click', (e) => {
+            // Triggers when Game form is submitted
+            // Edit or add the game
+            if (e.target.classList.contains('game-save')) {
+                this.handleEditGame(e);
+            } else if (e.target.classList.contains('modal-btn-submit')) {
+                this.handleAddGame(e);
+            };
             // Close modal if a click is registered outside of the modal box
             const dialogDimensions = this.GameView.modal.getBoundingClientRect();
             if (
@@ -68,13 +77,10 @@ export class Controller {
                 e.clientY > dialogDimensions.bottom
             ) {
                 this.GameView.modal.close();
-            };
-            // Triggers when Game form is submitted
-            // Edit or add the game
-            if (e.target.classList.contains('game-save')) {
-                this.handleEditGame(e);
-            } else if (e.target.classList.contains('modal-btn-submit')) {
-                this.handleAddGame(e);
+                if (this.GameView.editModal === true) {
+                    form.reset();
+                    this.GameView.editModal = false;
+                };
             };
         });
     };
@@ -135,8 +141,7 @@ export class Controller {
         };
     };
     // Expand game details container when clicked
-    handleExpandGame = (e) => {
-        const gameCont = e.target.closest('.game-container');
+    handleExpandGame = (gameCont) => {
         if (this.GameView.expandState) {
             // Close expand container if it's already open and clicked on again
             if (this.Model.activeLibrary.array.indexOf(this.Model.activeGame) === this.GameView.clickedGame(gameCont)) {
@@ -166,6 +171,7 @@ export class Controller {
             this.GameView.updateGameView(this.Model.activeLibrary.array, this.Model.activeLibrary.name);
             form.reset();
             this.GameView.expandState = false;
+            this.GameView.editModal = false;
         };
     };
     // Displays modal to edit with game values filled in

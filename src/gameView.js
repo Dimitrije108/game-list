@@ -8,6 +8,7 @@ export class GameView {
         this.gamePage = document.querySelector('.game-page');
         // If the game cont is expanded with additional info or not
         this.expandState = false;
+        this.editModal = false;
         this.addGameBtn.addEventListener('click', () => {
             this.modal.showModal();
             // Changes it back to the submit btn if edit btn was previously used
@@ -141,6 +142,7 @@ export class GameView {
             changeBtn.textContent = 'Save';
             changeBtn.classList.replace('modal-btn-submit', 'game-save');
         };
+        this.editModal = true;
     };
     // Determines which game was clicked
     clickedGame = (e) => {
