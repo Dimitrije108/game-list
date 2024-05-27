@@ -31,7 +31,7 @@ export class GameView {
             mustPlay = document.querySelector('#must-play').value;
         };
         const progress = document.querySelector('#progress').value;
-        const dateCompleted = document.querySelector('#dateCompleted').value;
+        const dateCompleted = document.querySelector('#date-completed').value;
         const rating = document.querySelector('#rating').value;
         return { title, releaseDate, genre, mustPlay, progress, dateCompleted, rating, };
     };
@@ -49,6 +49,7 @@ export class GameView {
             const mustPlay = createDiv(game.mustPlay, 'must-play');
             nameCont.classList.remove('center-name');
             nameCont.appendChild(mustPlay);
+            contDiv.style.backgroundImage = 'linear-gradient(to right, #e6e6ff, #fdfdec, #fdfdec, #fdfdec, #fdfdec, #fdfdec)';
         };
 
         const releasedCont = createDiv(undefined, 'game-stat-container');
@@ -64,6 +65,18 @@ export class GameView {
         const progressCont = createDiv(undefined, 'game-stat-container');
         const progressValue = createDiv(game.progress, 'value');
         progressCont.appendChild(progressValue);
+
+        if (game.progress === 'Completed') {
+            progressValue.style.backgroundColor = '#99ff99';
+            progressValue.style.padding = '0.4rem 0.6rem';
+            progressValue.style.borderRadius = '6px';
+            contDiv.style.borderLeft = '4px solid #00cc00';
+        } else if (game.progress === 'Currently playing') {
+            progressValue.style.backgroundColor = 'rgb(232, 225, 255)';
+            progressValue.style.padding = '0.4rem 0.6rem';
+            progressValue.style.borderRadius = '6px';
+            contDiv.style.borderLeft = '4px solid rgb(199, 182, 255)';
+        }
         
         initView.appendChild(nameCont);
         initView.appendChild(releasedCont);
@@ -133,7 +146,7 @@ export class GameView {
         if (game.dateCompleted !== '') {
             const parsedDate = parse(game.dateCompleted, 'dd/MM/yyyy', new Date());
             const reformatted = format(parsedDate, 'yyyy-MM-dd');
-            document.querySelector('#dateCompleted').value = reformatted;
+            document.querySelector('#date-completed').value = reformatted;
         };
         document.querySelector('#rating').value = game.rating;
         // Replace the submit button with save button
