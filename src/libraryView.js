@@ -23,15 +23,19 @@ export class LibraryView {
         const form = createForm();
         form.appendChild(createInput());
         containerDiv.appendChild(form);
-        createCancelIcon(containerDiv);
+        // Create the X svg button to delete the input field
+        const cancelBtn = createBtn(undefined, 'input-cancel');
+        cancelBtn.title = 'Cancel';
+        createCancelIcon(cancelBtn);
+        containerDiv.appendChild(cancelBtn);
+
         this.libTab.appendChild(containerDiv);
         
-        const svg = document.querySelector('.cancel-svg');
-        const svgStroke = svg.querySelector('.cancel-svg-style');
+        const svg = cancelBtn.querySelector('.cancel-svg-style');
         // Change cancel icon color to red when hovered over
-        svg.addEventListener('mouseover', () => svgStroke.style.stroke = 'red');
+        cancelBtn.addEventListener('mouseover', () => svg.style.stroke = 'red');
         // Change it back to standard
-        svg.addEventListener('mouseout', () => svgStroke.style.stroke = '#000000');
+        cancelBtn.addEventListener('mouseout', () => svg.style.stroke = '#000000');
     };
 
     getInputValue = () => document.querySelector('#lib-input').value;
@@ -39,6 +43,7 @@ export class LibraryView {
     addLibContainer = (name) => {
         const containerDiv = createDiv(undefined, 'lib-container');
         const nameDiv = createDiv(name, 'lib-name');
+        nameDiv.title = name;
         // Create rename button with edit svg icon
         const renameBtn = createBtn(undefined, 'lib-rename');
         renameBtn.title = 'Rename';
