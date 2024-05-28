@@ -18,8 +18,11 @@
     --secondary-color: rgb(214, 202, 255);
     --active-hover-color: rgb(199, 182, 255);
     --input-form-color: #f0f0f0;
+    --border: 1px solid rgb(177, 177, 177);
+    --submit-btn-color: rgb(142, 255, 157);
     --padding: 0.4rem 0.6rem;
     --border-radius: 6px;
+    --font-size: 0.9rem;
 }
 
 html,
@@ -143,16 +146,17 @@ input {
 }
 
 .lib-tab {
+    padding-bottom: 1.5rem;
     overflow-y: auto;
 }
 
 .lib-container {
     padding: var(--padding);
-    font-size: 0.9rem;
+    font-size: var(--font-size);
     border-radius: var(--border-radius);
+    cursor: pointer;
     display: flex;
     align-items: center;
-    cursor: pointer;
 }
 
 .lib-container:hover {
@@ -160,16 +164,16 @@ input {
 }
 
 .lib-name {
+    width: 5rem;
     flex: 1;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    width: 5rem;
 }
 
 .lib-container > button {
     margin-left: 0.1rem;
-    padding: 0.1rem 0.1rem 0.2rem 0.1rem;
+    padding: 0.1rem;
     border-radius: var(--border-radius);
 }
 
@@ -197,9 +201,9 @@ input {
 }
 
 #lib-input {
-    font-size: 0.9rem;
     width: 100%;
     padding: 0.4rem 2.3rem 0.4rem 0.6rem;
+    font-size: var(--font-size);
 }
 
 #lib-input:focus {
@@ -212,7 +216,9 @@ input {
     right: 0.4rem;
     padding: 0.2rem;
 }
-/* GAME PAGE STYLING */
+/* /////////////////////////////////////////////////////// */
+/* //////////////GAME PAGE STYLING//////////////////////// */
+/* /////////////////////////////////////////////////////// */
 .content {
     padding: 0 0.6rem 1.5rem 0.6rem;
 }
@@ -220,37 +226,37 @@ input {
 .header {
     position: sticky;
     top: 0;
-    background-color: rgba(255, 255, 255, .7);
+    background-color: rgba(255, 255, 255, .6);
     border-bottom-right-radius: var(--border-radius);
     border-bottom-left-radius: var(--border-radius);
 }
 
 .game-page-lib {
-    padding: 0.4rem 0 0.4rem 0.6rem;
+    padding: 0.4rem 0;
+    font-size: 1.4rem;
     display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
 .lib-info {
-    display: flex;
-    flex: 1;
-    align-items: baseline;
+    padding: 0.2rem 0.6rem;
+    background-color: rgba(255, 255, 255, .8);
+    border-radius: var(--border-radius);
 }
 
 .lib-info-name {
-    font-size: 1.4rem;
+    font-family: PoppinsMedium;
 }
 
 .lib-info-number {
-    font-family: PoppinsRegular;
-    font-size: 0.9rem;
-    margin-left: 0.6rem;
+    font-size: var(--font-size);
+    margin-left: 0.4rem;
 }
 
 .add-game {
-    font-family: PoppinsRegular;
-    font-size: 1.4rem;
     padding: 0.2rem 0.4rem;
+    font-size: 1.4rem;
     border-radius: var(--border-radius);
     display: flex;
     justify-content: center;
@@ -258,7 +264,7 @@ input {
 }
 
 .add-game:hover {
-    background-color: rgb(142, 255, 157);
+    background-color: var(--submit-btn-color);
 }
 
 .add-game:hover > img {
@@ -272,12 +278,13 @@ input {
 }
 
 .game-info-header {
-    display: flex;
+    font-family: PoppinsMedium;
     padding: var(--padding);
-    background-color: rgb(214, 202, 255);
+    background-color: rgb(232, 225, 255);
     border-radius: var(--border-radius);
+    display: flex;
 }
-/* Title takes up more space than the others */
+/* Title takes up more space than other elements */
 .game-info-header div:first-child {
     flex: 1;
 }
@@ -287,12 +294,11 @@ input {
 }
 
 .game-container {
-    font-family: PoppinsRegular;
     margin: 0.6rem 0 1rem 0;
     padding: var(--padding);
     background-color: #fdfdec;
     cursor: pointer;
-    border: 1px solid rgb(177, 177, 177);
+    border: var(--border);
     border-radius: var(--border-radius);
 }
 
@@ -302,7 +308,7 @@ input {
 
 .game-name-container {
     flex: 1;
-    height: 43px;
+    height: 2.7rem;
 }
 
 .game-number-container {
@@ -387,9 +393,9 @@ input {
 fieldset {
     border: none;
     padding: 2rem;
-    border: 1px solid rgb(177, 177, 177);
+    border: var(--border);
     border-radius: var(--border-radius);
-    background-color: aliceblue;
+    background-color: var(--main-color);
 }
 
 legend {
@@ -399,8 +405,7 @@ legend {
 .input-positioning {
     display: grid;
     grid-template: repeat(4, 1fr) / repeat(4, 1fr);
-    column-gap: 2rem;
-    row-gap: 2rem;
+    gap: 1.5rem;
 }
 
 .input-field {
@@ -453,18 +458,14 @@ legend {
     grid-row: 4 / 5;
 }
 
-label {
-    font-family: PoppinsRegular;
-}
-
 label > span {
     color: red;
 }
 
 .input-field > input {
     padding: 0.2rem 0.4rem;
-    border: 1px solid rgb(177, 177, 177);
-    font-size: 0.9rem;
+    border: var(--border);
+    font-size: var(--font-size);
 }
 
 input:focus,
@@ -480,13 +481,13 @@ select:valid:required {
 }
 
 select {
-    cursor: pointer;
-    padding: 0.25rem 0.4rem;
-    border: 1px solid rgb(177, 177, 177);
-    border-radius: var(--border-radius);
-    background-color: var(--input-form-color);
-    font-size: 0.9rem;
     width: 100%;
+    padding: 0.25rem 0.4rem;
+    border: var(--border);
+    border-radius: var(--border-radius);
+    font-size: var(--font-size);
+    background-color: var(--input-form-color);
+    cursor: pointer;
 }
 
 input[type="checkbox"] {
@@ -498,7 +499,7 @@ input[type="checkbox"] {
     padding: 0;
     width: 1rem;
     height: 1rem;
-    border: 1px solid rgb(177, 177, 177);
+    border: var(--border);
     border-radius: 2px;
     vertical-align: -2px;
     color: black;
@@ -519,7 +520,7 @@ input[type="checkbox"]:checked::before {
 #date-completed {
     cursor: pointer;
     padding: 0.2rem 0.4rem;
-    font-size: 0.9rem;
+    font-size: var(--font-size);
 }
 
 #rating {
@@ -535,12 +536,12 @@ input[type="checkbox"]:checked::before {
 .game-save {
     background-color: var(--input-form-color);
     padding: 0.6rem;
-    border: 1px solid rgb(177, 177, 177);
+    border: var(--border);
     border-radius: var(--border-radius);
     flex: 1;
 }
 
 .modal-btn-submit:hover,
 .game-save:hover {
-    background-color: rgb(142, 255, 157);
+    background-color: var(--submit-btn-color);
 }
