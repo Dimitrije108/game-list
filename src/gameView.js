@@ -76,6 +76,10 @@ export class GameView {
             progressValue.style.padding = '0.4rem 0.6rem';
             progressValue.style.borderRadius = '6px';
             contDiv.style.borderLeft = '4px solid rgb(199, 182, 255)';
+        } else {
+            progressValue.style.backgroundColor = 'aliceblue';
+            progressValue.style.padding = '0.4rem 0.6rem';
+            progressValue.style.borderRadius = '6px';
         }
         
         initView.appendChild(nameCont);
