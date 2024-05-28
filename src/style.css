@@ -39,6 +39,7 @@ button {
     border: none;
     cursor: pointer;
     font-family: PoppinsMedium;
+    transition: background-color 0.3s ease;
 }
 
 input {
@@ -63,13 +64,13 @@ button>img {
 
 .page-container {
     display: grid;
-    grid-template-columns: 1.2fr 6fr;
     height: 100%;
     background-color: rgb(255, 255, 255);
+    grid-template-columns: 1.2fr 6fr;
 }
 /* SIDEBAR STYLING */
 .sidebar {
-    padding: 0.5rem;
+    padding: 0.5rem 0.5rem 1.5rem 0.5rem;
     background-color: aliceblue;
 }
 
@@ -193,7 +194,15 @@ button>img {
 }
 /* GAME PAGE STYLING */
 .content {
-    padding: var(--padding);
+    padding: 0 0.6rem 1.5rem 0.6rem;
+}
+
+.header {
+    position: sticky;
+    top: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
 }
 
 .game-page-lib {
@@ -245,7 +254,7 @@ button>img {
 .game-info-header {
     display: flex;
     padding: var(--padding);
-    background-color: aliceblue;
+    background-color: rgb(214, 202, 255);
     border-radius: var(--border-radius);
 }
 /* Title takes up more space than the others */
@@ -342,7 +351,7 @@ button>img {
 
 /* MODAL styling */
 .modal {
-    width: 50ch;
+    width: 60ch;
     padding: 2rem;
     border: none;
     border-radius: var(--border-radius);
@@ -357,11 +366,14 @@ button>img {
 
 fieldset {
     border: none;
+    padding: 2rem;
+    border: 1px solid rgb(177, 177, 177);
+    border-radius: var(--border-radius);
+    background-color: aliceblue;
 }
 
 legend {
     font-size: 1.5rem;
-    margin-bottom: 1rem;
 }
 
 .input-positioning {
@@ -407,13 +419,13 @@ legend {
 }
 
 .date-completed-grid {
-    grid-column: 3 / 5;
+    grid-column: 2 / 4;
     grid-row: 3 / 4;
 }
 
 .rate-grid {
-    grid-column: 1 / 2;
-    grid-row: 4 / 5;
+    grid-column: 4 / 5;
+    grid-row: 3 / 4;
 }
 
 .button-grid {
@@ -430,7 +442,7 @@ label > span {
 }
 
 .input-field > input {
-    padding: var(--padding);
+    padding: 0.2rem 0.4rem;
     border: 1px solid rgb(177, 177, 177);
     background-color: #f0f0f0;
     font-size: 0.9rem;
@@ -450,7 +462,7 @@ select:valid:required {
 
 select {
     cursor: pointer;
-    padding: 0.45rem 0.6rem;
+    padding: 0.25rem 0.4rem;
     border: 1px solid rgb(177, 177, 177);
     border-radius: var(--border-radius);
     background-color: #f0f0f0;
@@ -487,7 +499,7 @@ input[type="checkbox"]:checked::before {
 
 #date-completed {
     cursor: pointer;
-    padding: 0.33rem 0.6rem;
+    padding: 0.2rem 0.4rem;
     font-size: 0.9rem;
 }
 
