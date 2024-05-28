@@ -14,10 +14,10 @@
 }
 
 :root {
-    --sidebar-background-color: rgb(232, 225, 255);
-    --sidebar-hover-color: rgb(214, 202, 255);
-    --sidebar-active-hover-color: rgb(199, 182, 255);
-    --sidebar-secondary-color: rgb(255, 255, 255);
+    --main-color: rgb(240, 248, 255);
+    --secondary-color: rgb(214, 202, 255);
+    --active-hover-color: rgb(199, 182, 255);
+    --input-form-color: #f0f0f0;
     --padding: 0.4rem 0.6rem;
     --border-radius: 6px;
 }
@@ -29,7 +29,7 @@ body {
     box-sizing: border-box;
     height: 100%;
     width: 100%;
-    font-family: PoppinsMedium;
+    font-family: PoppinsRegular;
 }
 
 button {
@@ -42,39 +42,57 @@ button {
     transition: background-color 0.3s ease;
 }
 
+button>svg,
+button>img {
+    cursor: pointer;
+    vertical-align: middle;
+}
+
 input {
     box-sizing: border-box;
     font-family: PoppinsRegular;
     border: none;
     border-radius: var(--border-radius);
     font-size: 1rem;
-}
-
-svg {
-    cursor: pointer;
-}
-
-button>svg {
-    vertical-align: middle;
-}
-
-button>img {
-    vertical-align: middle;
+    background-color: var(--input-form-color);
 }
 
 .page-container {
-    display: grid;
     height: 100%;
-    background-color: rgb(255, 255, 255);
+    width: 100%;
+    display: grid;
     grid-template-columns: 1.2fr 6fr;
+    background-color: rgb(255, 255, 255);
+    overflow-y: auto;
 }
 /* SIDEBAR STYLING */
 .sidebar {
-    padding: 0.5rem 0.5rem 1.5rem 0.5rem;
-    background-color: aliceblue;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    padding: 0 0.5rem;
+    background-color: var(--main-color);
+    overflow-y: auto;
+    /* Deletes the sidebar scroll styles when overflow occurs */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
 }
 
-.logo {
+.sidebar::-webkit-scrollbar {
+    width: 0; /* Chrome, Safari, Opera */
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: transparent;
+    border: none;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.main-logo {
+    margin-top: 0.5rem;
     padding: 0.3rem;
     font-family: GothicPixels;
     font-size: 2rem;
@@ -83,33 +101,33 @@ button>img {
     text-shadow: 3px 3px #48ff00;
 }
 
-.main-lib-field {
+.lib-section {
     padding: var(--padding);
+    font-family: PoppinsMedium;
 }
 /* Collection library button */
 .lib-main {
-    padding: var(--padding);
     width: 100%;
+    padding: var(--padding);
     font-family: GothicPixels;
     font-size: 1.5rem;
     border-radius: var(--border-radius);
 }
 
 .lib-main:hover {
-    color: #ffffff;
-    background-color: rgb(206, 191, 255);
+    color: rgb(255, 255, 255);
+    background-color: rgb(199, 182, 255);
     text-shadow: 3px 3px #ce53ff;
-}
-
-.my-libraries-field {
-    padding: var(--padding);
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .lib-section-title {
     flex: 1;
+}
+
+.lib-section.my-libs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .lib-add-btn {
@@ -120,14 +138,17 @@ button>img {
 }
 
 .lib-add-btn:hover {
-    background-color: var(--sidebar-secondary-color);
+    background-color: rgb(255, 255, 255);
     transform: rotateZ(90deg);
+}
+
+.lib-tab {
+    overflow-y: auto;
 }
 
 .lib-container {
     padding: var(--padding);
     font-size: 0.9rem;
-    font-family: PoppinsRegular;
     border-radius: var(--border-radius);
     display: flex;
     align-items: center;
@@ -135,7 +156,7 @@ button>img {
 }
 
 .lib-container:hover {
-    background-color: var(--sidebar-hover-color);
+    background-color: var(--secondary-color);
 }
 
 .lib-name {
@@ -148,20 +169,20 @@ button>img {
 
 .lib-container > button {
     margin-left: 0.1rem;
-    padding: 0.2rem;
+    padding: 0.1rem 0.1rem 0.2rem 0.1rem;
     border-radius: var(--border-radius);
 }
 
 .lib-container > button:hover {
-    background-color: var(--sidebar-background-color);
+    background-color: var(--main-color);
 }
 
 .active-lib {
-    background-color: var(--sidebar-hover-color);
+    background-color: var(--secondary-color);
 }
 
 .active-lib:hover {
-    background-color: var(--sidebar-active-hover-color);
+    background-color: var(--active-hover-color);
 }
 /* Input field styling */
 .input-container {
@@ -177,9 +198,8 @@ button>img {
 
 #lib-input {
     font-size: 0.9rem;
-    background-color: #f0f0f0;
     width: 100%;
-    padding: 0.5rem 2.3rem 0.5rem 0.6rem;
+    padding: 0.4rem 2.3rem 0.4rem 0.6rem;
 }
 
 #lib-input:focus {
@@ -187,7 +207,7 @@ button>img {
     background-color: rgb(255, 255, 255);
 }
 
-.input-container > svg {
+.input-cancel {
     position: absolute;
     right: 0.4rem;
     padding: 0.2rem;
@@ -200,7 +220,7 @@ button>img {
 .header {
     position: sticky;
     top: 0;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, .7);
     border-bottom-right-radius: var(--border-radius);
     border-bottom-left-radius: var(--border-radius);
 }
@@ -238,7 +258,7 @@ button>img {
 }
 
 .add-game:hover {
-    background-color: aliceblue;
+    background-color: rgb(142, 255, 157);
 }
 
 .add-game:hover > img {
@@ -444,7 +464,6 @@ label > span {
 .input-field > input {
     padding: 0.2rem 0.4rem;
     border: 1px solid rgb(177, 177, 177);
-    background-color: #f0f0f0;
     font-size: 0.9rem;
 }
 
@@ -465,8 +484,8 @@ select {
     padding: 0.25rem 0.4rem;
     border: 1px solid rgb(177, 177, 177);
     border-radius: var(--border-radius);
-    background-color: #f0f0f0;
-    font-size: 1rem;
+    background-color: var(--input-form-color);
+    font-size: 0.9rem;
     width: 100%;
 }
 
@@ -514,7 +533,7 @@ input[type="checkbox"]:checked::before {
 
 .modal-btn-submit,
 .game-save {
-    background-color: #f0f0f0;
+    background-color: var(--input-form-color);
     padding: 0.6rem;
     border: 1px solid rgb(177, 177, 177);
     border-radius: var(--border-radius);
