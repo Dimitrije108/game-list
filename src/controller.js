@@ -222,6 +222,7 @@ export class Controller {
             this.GameView.updateGameView(this.Model.activeLibrary.array, this.Model.activeLibrary.name);
         } else {
             this.Model.saveData();
+            this.GameView.updateGameView(this.Model.activeLibrary.array, this.Model.activeLibrary.name);
         };
     };
 };

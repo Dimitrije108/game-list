@@ -160,7 +160,7 @@ export class GameView {
         const clickedGame = gameList.indexOf(container);
         return clickedGame;
     };
-    // Iterates over library array and displays all game objects inside
+    // Iterate over library array and display all game objects inside, library name and the number of games inside it
     updateGameView = (activeLibrary, libName) => {
         this.gamePage.textContent = '';
         activeLibrary.forEach((game) => this.addGame(game));

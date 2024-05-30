@@ -68,7 +68,9 @@ input {
     background-color: rgb(255, 255, 255);
     overflow-y: auto;
 }
-/* SIDEBAR STYLING */
+/* /////////////////////////////////////////////////////// */
+/* //////////////SIDEBAR STYLING////////////////////////// */
+/* /////////////////////////////////////////////////////// */
 .sidebar {
     position: sticky;
     top: 0;
@@ -402,7 +404,9 @@ input {
     background-color: rgb(255, 255, 255);
 }
 
-/* MODAL styling */
+/* /////////////////////////////////////////////////////// */
+/* //////////////MODAL STYLING//////////////////////////// */
+/* /////////////////////////////////////////////////////// */
 .modal {
     width: 60ch;
     padding: 2rem;
@@ -546,8 +550,6 @@ input[type="checkbox"]:checked::before {
 
 #date-completed {
     cursor: pointer;
-    padding: 0.2rem 0.4rem;
-    font-size: var(--font-size);
 }
 
 #rating {
