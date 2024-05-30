@@ -1,4 +1,4 @@
-export { createForm, createInput, createDiv, createBtn, createEditIcon, createTrashIcon, createCancelIcon };
+export { createForm, createInput, createDiv, createBtn, createEditIcon, createTrashIcon, createCancelIcon, addHoverEffect };
 import * as d3 from "d3";
 
 const createForm = () => {
@@ -19,17 +19,21 @@ const createInput = () => {
     return newInput;
 };
 
-const createDiv = (txtContent, className) => {
+const createDiv = (txtContent, className, title) => {
     const newDiv = document.createElement('div');
     newDiv.textContent = txtContent;
     newDiv.classList.add(className);
+    if (title) {
+        newDiv.title = title;
+    };
     return newDiv;
 };
 
-const createBtn = (txtContent, className) => {
+const createBtn = (txtContent, className, title) => {
     const newBtn = document.createElement('button');
     newBtn.textContent = txtContent;
     newBtn.classList.add(className);
+    newBtn.title = title;
     return newBtn;
 };
 
@@ -120,4 +124,11 @@ const createCancelIcon = (container) => {
 
     innerGroup.append("path")
         .attr("d", "m5.5 5.5 6 6");
+}
+
+const addHoverEffect = (element, svg, property) => {
+    // Change icon color to red when hovered over
+    element.addEventListener('mouseover', () => svg.style.setProperty(property, 'red'));
+    // Change it back to standard
+    element.addEventListener('mouseout', () => svg.style.setProperty(property, '#000000'));
 }

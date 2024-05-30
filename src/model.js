@@ -177,7 +177,7 @@ export class Model {
         };
         return gameData;
     };
-    // Loads saved libraries and games from the local storage when the app is started
+    // Loads saved libraries and games from the local storage when the app starts
     loadData = () => {
         // Convert JSON strings back to usable data
         const storedCollection = JSON.parse(localStorage.getItem('collection'));

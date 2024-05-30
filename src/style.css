@@ -338,6 +338,33 @@ input {
     font-size: 0.8rem;
 }
 
+.game-container.completed {
+    border-left: 4px solid #00cc00;
+}
+
+.game-container.currently-playing {
+    border-left: 4px solid rgb(199, 182, 255);
+}
+
+.status-completed,
+.status-currently-playing,
+.status-yet-to-play {
+    padding: var(--padding);
+    border-radius: var(--border-radius);
+}
+
+.status-completed {
+    background-color: #99ff99;
+}
+
+.status-currently-playing {
+    background-color: rgb(232, 225, 255);
+}
+
+.status-yet-to-play {
+    background-color: var(--main-color);
+}
+
 .game-expand {
     margin-top: 0.8rem;
     margin-bottom: 0.4rem;
