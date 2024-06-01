@@ -1,3 +1,5 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
+
 @font-face {
     font-family: GothicPixels;
     src: url(assets/fonts/GothicPixels.ttf);
@@ -32,7 +34,7 @@ body {
     box-sizing: border-box;
     height: 100%;
     width: 100%;
-    font-family: PoppinsRegular;
+    font-family: PoppinsRegular, sans-serif;
 }
 
 button {
@@ -41,7 +43,7 @@ button {
     background-color: transparent;
     border: none;
     cursor: pointer;
-    font-family: PoppinsMedium;
+    font-family: PoppinsMedium, sans-serif;
     transition: background-color 0.3s ease;
 }
 
@@ -53,7 +55,7 @@ button>img {
 
 input {
     box-sizing: border-box;
-    font-family: PoppinsRegular;
+    font-family: PoppinsRegular, sans-serif;
     border: none;
     border-radius: var(--border-radius);
     font-size: 1rem;
@@ -99,7 +101,7 @@ input {
 .main-logo {
     margin-top: 0.5rem;
     padding: 0.3rem;
-    font-family: GothicPixels;
+    font-family: GothicPixels, sans-serif;
     font-size: 2rem;
     text-align: center;
     color: rgb(0, 0, 0);
@@ -108,13 +110,13 @@ input {
 
 .lib-section {
     padding: var(--padding);
-    font-family: PoppinsMedium;
+    font-family: PoppinsMedium, sans-serif;
 }
 /* Collection library button */
 .lib-main {
     width: 100%;
     padding: var(--padding);
-    font-family: GothicPixels;
+    font-family: GothicPixels, sans-serif;
     font-size: 1.5rem;
     border-radius: var(--border-radius);
 }
@@ -248,7 +250,7 @@ input {
 }
 
 .lib-info-name {
-    font-family: PoppinsMedium;
+    font-family: PoppinsMedium, sans-serif;
 }
 
 .lib-info-number {
@@ -280,7 +282,7 @@ input {
 }
 
 .game-info-header {
-    font-family: PoppinsMedium;
+    font-family: PoppinsMedium, sans-serif;
     padding: var(--padding);
     background-color: rgb(232, 225, 255);
     border-radius: var(--border-radius);
@@ -328,7 +330,7 @@ input {
 }
 
 .game-name {
-    font-family: PoppinsMedium;
+    font-family: PoppinsMedium, sans-serif;
 }
 
 .center-name {
@@ -516,9 +518,14 @@ select {
     padding: 0.25rem 0.4rem;
     border: var(--border);
     border-radius: var(--border-radius);
+    font-family: PoppinsRegular;
     font-size: var(--font-size);
     background-color: var(--input-form-color);
     cursor: pointer;
+}
+
+select option {
+    font-family: PoppinsRegular, sans-serif;
 }
 
 input[type="checkbox"] {
