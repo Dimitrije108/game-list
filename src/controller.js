@@ -198,14 +198,9 @@ export class Controller {
             this.handleAddGame(e);
             form.reportValidity();
         };
-        // Close modal if a click is registered outside of the modal box
-        const dialogDimensions = this.GameView.modal.getBoundingClientRect();
-        if (
-            e.clientX < dialogDimensions.left ||
-            e.clientX > dialogDimensions.right ||
-            e.clientY < dialogDimensions.top ||
-            e.clientY > dialogDimensions.bottom
-        ) {
+        // In Mozilla Firefox clicking the select input is registered as 0 by e.clientX and e.clientY
+        // which closes the modal when it shouldn't, checking if element is select first fixes it
+        if (e.target.tagName !== 'SELECT' && this.isClickInsideModal(e)) {
             this.GameView.modal.close();
             // Reset the form so edit values don't stay filled if add new game is used after it
             if (this.GameView.editModal === true) {
@@ -213,6 +208,18 @@ export class Controller {
                 this.GameView.editModal = false;
             };
         };
+    };
+    // Close modal if a click is registered outside of the modal box
+    isClickInsideModal = (e) => {
+        const dialogDimensions = this.GameView.modal.getBoundingClientRect();
+        if (
+            e.clientX < dialogDimensions.left ||
+            e.clientX > dialogDimensions.right ||
+            e.clientY < dialogDimensions.top ||
+            e.clientY > dialogDimensions.bottom
+        ) {
+            return true;
+        }
     };
     // If stored data exists load it and update the view, if not, create the storage reference
     initData = () => {
