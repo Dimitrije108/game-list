@@ -411,6 +411,7 @@ input {
 /* /////////////////////////////////////////////////////// */
 .modal {
     width: 60ch;
+    /* box-sizing: border-box; */
     padding: 2rem;
     border: none;
     border-radius: var(--border-radius);
@@ -424,7 +425,6 @@ input {
 }
 
 fieldset {
-    border: none;
     padding: 2rem;
     border: var(--border);
     border-radius: var(--border-radius);
@@ -442,9 +442,14 @@ legend {
 }
 
 .input-field {
+    min-width: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.input-field > label{
+    margin-bottom: 0.15rem;
 }
 
 .title-grid {
@@ -515,7 +520,7 @@ select:valid:required {
 
 select {
     width: 100%;
-    padding: 0.25rem 0.4rem;
+    padding: 0.1rem 0.2rem;
     border: var(--border);
     border-radius: var(--border-radius);
     font-family: PoppinsRegular;
