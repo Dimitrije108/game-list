@@ -1,588 +1,588 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
 
 @font-face {
-    font-family: GothicPixels;
-    src: url(assets/fonts/GothicPixels.ttf);
+  font-family: GothicPixels;
+  src: url(assets/fonts/GothicPixels.ttf);
 }
 
 @font-face {
-    font-family: PoppinsMedium;
-    src: url(assets/fonts/Poppins-Medium.ttf);
+  font-family: PoppinsMedium;
+  src: url(assets/fonts/Poppins-Medium.ttf);
 }
 
 @font-face {
-    font-family: PoppinsRegular;
-    src: url(assets/fonts/Poppins-Regular.ttf);
+  font-family: PoppinsRegular;
+  src: url(assets/fonts/Poppins-Regular.ttf);
 }
 
 :root {
-    --main-color: rgb(240, 248, 255);
-    --secondary-color: rgb(214, 202, 255);
-    --active-hover-color: rgb(199, 182, 255);
-    --input-form-color: #f0f0f0;
-    --border: 1px solid rgb(177, 177, 177);
-    --submit-btn-color: rgb(142, 255, 157);
-    --padding: 0.4rem 0.6rem;
-    --border-radius: 6px;
-    --font-size: 0.9rem;
+  --main-color: rgb(240, 248, 255);
+  --secondary-color: rgb(214, 202, 255);
+  --active-hover-color: rgb(199, 182, 255);
+  --input-form-color: #f0f0f0;
+  --border: 1px solid rgb(177, 177, 177);
+  --submit-btn-color: rgb(142, 255, 157);
+  --padding: 0.4rem 0.6rem;
+  --border-radius: 6px;
+  --font-size: 0.9rem;
 }
 
 html,
 body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    height: 100%;
-    width: 100%;
-    font-family: PoppinsRegular, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  font-family: PoppinsRegular, sans-serif;
 }
 
 button {
-    margin: 0;
-    padding: 0;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    font-family: PoppinsMedium, sans-serif;
-    transition: background-color 0.3s ease;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: PoppinsMedium, sans-serif;
+  transition: background-color 0.3s ease;
 }
 
-button>svg,
-button>img {
-    cursor: pointer;
-    vertical-align: middle;
+button > svg,
+button > img {
+  cursor: pointer;
+  vertical-align: middle;
 }
 
 input {
-    box-sizing: border-box;
-    font-family: PoppinsRegular, sans-serif;
-    border: none;
-    border-radius: var(--border-radius);
-    font-size: 1rem;
-    background-color: var(--input-form-color);
+  box-sizing: border-box;
+  font-family: PoppinsRegular, sans-serif;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  background-color: var(--input-form-color);
 }
 
 .page-container {
-    height: 100%;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1.2fr 6fr;
-    background-color: rgb(255, 255, 255);
-    overflow-y: auto;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.2fr 6fr;
+  background-color: rgb(255, 255, 255);
+  overflow-y: auto;
 }
 /* /////////////////////////////////////////////////////// */
 /* //////////////SIDEBAR STYLING////////////////////////// */
 /* /////////////////////////////////////////////////////// */
 .sidebar {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    padding: 0 0.5rem;
-    background-color: var(--main-color);
-    overflow-y: auto;
-    /* Deletes the sidebar scroll styles when overflow occurs */
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding: 0 0.5rem;
+  background-color: var(--main-color);
+  overflow-y: auto;
+  /* Deletes the sidebar scroll styles when overflow occurs */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 .sidebar::-webkit-scrollbar {
-    width: 0; /* Chrome, Safari, Opera */
+  width: 0; /* Chrome, Safari, Opera */
 }
 
 .sidebar::-webkit-scrollbar-thumb {
-    background: transparent;
-    border: none;
+  background: transparent;
+  border: none;
 }
 
 .sidebar::-webkit-scrollbar-track {
-    background: transparent;
+  background: transparent;
 }
 
 .main-logo {
-    margin-top: 0.5rem;
-    padding: 0.3rem;
-    font-family: GothicPixels, sans-serif;
-    font-size: 2rem;
-    text-align: center;
-    color: rgb(0, 0, 0);
-    text-shadow: 3px 3px #48ff00;
+  margin-top: 0.5rem;
+  padding: 0.3rem;
+  font-family: GothicPixels, sans-serif;
+  font-size: 2rem;
+  text-align: center;
+  color: rgb(0, 0, 0);
+  text-shadow: 3px 3px #48ff00;
 }
 
 .lib-section {
-    padding: var(--padding);
-    font-family: PoppinsMedium, sans-serif;
+  padding: var(--padding);
+  font-family: PoppinsMedium, sans-serif;
 }
 /* Collection library button */
 .lib-main {
-    width: 100%;
-    padding: var(--padding);
-    font-family: GothicPixels, sans-serif;
-    font-size: 1.5rem;
-    border-radius: var(--border-radius);
+  width: 100%;
+  padding: var(--padding);
+  font-family: GothicPixels, sans-serif;
+  font-size: 1.5rem;
+  border-radius: var(--border-radius);
 }
 
 .lib-main:hover {
-    color: rgb(255, 255, 255);
-    background-color: rgb(199, 182, 255);
-    text-shadow: 3px 3px #ce53ff;
+  color: rgb(255, 255, 255);
+  background-color: rgb(199, 182, 255);
+  text-shadow: 3px 3px #ce53ff;
 }
 
 .lib-section-title {
-    flex: 1;
+  flex: 1;
 }
 
 .lib-section.my-libs {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .lib-add-btn {
-    padding: 0.2rem;
-    border-radius: 20px;
-    line-height: 1;
-    transition: transform 0.4s;
+  padding: 0.2rem;
+  border-radius: 20px;
+  line-height: 1;
+  transition: transform 0.4s;
 }
 
 .lib-add-btn:hover {
-    background-color: rgb(255, 255, 255);
-    transform: rotateZ(90deg);
+  background-color: rgb(255, 255, 255);
+  transform: rotateZ(90deg);
 }
 
 .lib-tab {
-    padding-bottom: 1.5rem;
-    overflow-y: auto;
+  padding-bottom: 1.5rem;
+  overflow-y: auto;
 }
 
 .lib-container {
-    padding: var(--padding);
-    font-size: var(--font-size);
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
+  padding: var(--padding);
+  font-size: var(--font-size);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
 .lib-container:hover {
-    background-color: var(--secondary-color);
+  background-color: var(--secondary-color);
 }
 
 .lib-name {
-    width: 5rem;
-    flex: 1;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+  width: 5rem;
+  flex: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .lib-container > button {
-    margin-left: 0.1rem;
-    padding: 0.1rem;
-    border-radius: var(--border-radius);
+  margin-left: 0.1rem;
+  padding: 0.1rem;
+  border-radius: var(--border-radius);
 }
 
 .lib-container > button:hover {
-    background-color: var(--main-color);
+  background-color: var(--main-color);
 }
 
 .active-lib {
-    background-color: var(--secondary-color);
+  background-color: var(--secondary-color);
 }
 
 .active-lib:hover {
-    background-color: var(--active-hover-color);
+  background-color: var(--active-hover-color);
 }
 /* Input field styling */
 .input-container {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .lib-form {
-    flex: 1;
+  flex: 1;
 }
 
 #lib-input {
-    width: 100%;
-    padding: 0.4rem 2.3rem 0.4rem 0.6rem;
-    font-size: var(--font-size);
+  width: 100%;
+  padding: 0.4rem 2.3rem 0.4rem 0.6rem;
+  font-size: var(--font-size);
 }
 
 #lib-input:focus {
-    outline: none;
-    background-color: rgb(255, 255, 255);
+  outline: none;
+  background-color: rgb(255, 255, 255);
 }
 
 .input-cancel {
-    position: absolute;
-    right: 0.4rem;
-    padding: 0.2rem;
+  position: absolute;
+  right: 0.4rem;
+  padding: 0.2rem;
 }
 /* /////////////////////////////////////////////////////// */
 /* //////////////GAME PAGE STYLING//////////////////////// */
 /* /////////////////////////////////////////////////////// */
 .content {
-    padding: 0 0.6rem 1.5rem 0.6rem;
+  padding: 0 0.6rem 1.5rem 0.6rem;
 }
 
 .header {
-    position: sticky;
-    top: 0;
-    background-color: rgba(255, 255, 255, .6);
-    border-bottom-right-radius: var(--border-radius);
-    border-bottom-left-radius: var(--border-radius);
+  position: sticky;
+  top: 0;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-bottom-right-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
 }
 
 .game-page-lib {
-    padding: 0.4rem 0;
-    font-size: 1.4rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  padding: 0.4rem 0;
+  font-size: 1.4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .lib-info {
-    padding: 0.2rem 0.6rem;
-    background-color: rgba(255, 255, 255, .8);
-    border-radius: var(--border-radius);
+  padding: 0.2rem 0.6rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: var(--border-radius);
 }
 
 .lib-info-name {
-    font-family: PoppinsMedium, sans-serif;
+  font-family: PoppinsMedium, sans-serif;
 }
 
 .lib-info-number {
-    font-size: var(--font-size);
-    margin-left: 0.4rem;
+  font-size: var(--font-size);
+  margin-left: 0.4rem;
 }
 
 .add-game {
-    padding: 0.2rem 0.4rem;
-    font-size: 1.4rem;
-    border-radius: var(--border-radius);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  padding: 0.2rem 0.4rem;
+  font-size: 1.4rem;
+  border-radius: var(--border-radius);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .add-game:hover {
-    background-color: var(--submit-btn-color);
+  background-color: var(--submit-btn-color);
 }
 
 .add-game:hover > img {
-    transition: transform 0.4s;
-    transform: rotateZ(90deg);
+  transition: transform 0.4s;
+  transform: rotateZ(90deg);
 }
 
 .add-game > p {
-    margin: 0;
-    padding-left: 0.2rem;
+  margin: 0;
+  padding-left: 0.2rem;
 }
 
 .game-info-header {
-    font-family: PoppinsMedium, sans-serif;
-    padding: var(--padding);
-    background-color: rgb(232, 225, 255);
-    border-radius: var(--border-radius);
-    display: flex;
+  font-family: PoppinsMedium, sans-serif;
+  padding: var(--padding);
+  background-color: rgb(232, 225, 255);
+  border-radius: var(--border-radius);
+  display: flex;
 }
 /* Title takes up more space than other elements */
 .game-info-header div:first-child {
-    flex: 1;
+  flex: 1;
 }
 
 .game-info-header > div {
-    width: 17%;
+  width: 17%;
 }
 
 .game-container {
-    margin: 0.6rem 0 1rem 0;
-    padding: var(--padding);
-    background-color: #fdfdec;
-    cursor: pointer;
-    border: var(--border);
-    border-radius: var(--border-radius);
+  margin: 0.6rem 0 1rem 0;
+  padding: var(--padding);
+  background-color: #fdfdec;
+  cursor: pointer;
+  border: var(--border);
+  border-radius: var(--border-radius);
 }
 
 .game-init {
-    display: flex;
+  display: flex;
 }
 
 .game-name-container {
-    flex: 1;
-    height: 2.7rem;
+  flex: 1;
+  height: 2.7rem;
 }
 
 .game-number-container {
-    width: 4.6rem;
+  width: 4.6rem;
 }
 
 .released-value {
-    text-align: end;
+  text-align: end;
 }
 
 .game-stat-container {
-    width: 17%;
-    display: flex;
-    align-items: center;
+  width: 17%;
+  display: flex;
+  align-items: center;
 }
 
 .game-name {
-    font-family: PoppinsMedium, sans-serif;
+  font-family: PoppinsMedium, sans-serif;
 }
 
 .center-name {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .must-play {
-    font-size: 0.8rem;
+  font-size: 0.8rem;
 }
 
 .game-container.completed {
-    border-left: 4px solid #00cc00;
+  border-left: 4px solid #00cc00;
 }
 
 .game-container.currently-playing {
-    border-left: 4px solid rgb(199, 182, 255);
+  border-left: 4px solid rgb(199, 182, 255);
 }
 
 .status-completed,
 .status-currently-playing,
 .status-yet-to-play {
-    padding: var(--padding);
-    border-radius: var(--border-radius);
+  padding: var(--padding);
+  border-radius: var(--border-radius);
 }
 
 .status-completed {
-    background-color: #99ff99;
+  background-color: #99ff99;
 }
 
 .status-currently-playing {
-    background-color: rgb(232, 225, 255);
+  background-color: rgb(232, 225, 255);
 }
 
 .status-yet-to-play {
-    background-color: var(--main-color);
+  background-color: var(--main-color);
 }
 
 .game-expand {
-    margin-top: 0.8rem;
-    margin-bottom: 0.4rem;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    position: relative;
+  margin-top: 0.8rem;
+  margin-bottom: 0.4rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
 }
 
 .game-expand-container {
-    width: 17%;
+  width: 17%;
 }
 
 .game-edit {
-    position: absolute;
-    bottom: 0.1rem;
-    left: 0;
+  position: absolute;
+  bottom: 0.1rem;
+  left: 0;
 }
 
 .game-del {
-    position: absolute;
-    bottom: 0.1rem;
-    left: 2rem;
+  position: absolute;
+  bottom: 0.1rem;
+  left: 2rem;
 }
 
 .game-edit,
 .game-del {
-    margin-right: 0.2rem;
-    padding: 0.2rem;
-    border-radius: var(--border-radius);
+  margin-right: 0.2rem;
+  padding: 0.2rem;
+  border-radius: var(--border-radius);
 }
 
 .game-edit:hover,
 .game-del:hover {
-    background-color: rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
 }
 
 /* /////////////////////////////////////////////////////// */
 /* //////////////MODAL STYLING//////////////////////////// */
 /* /////////////////////////////////////////////////////// */
 .modal {
-    width: 60ch;
-    /* box-sizing: border-box; */
-    padding: 2rem;
-    border: none;
-    border-radius: var(--border-radius);
-    box-shadow: 
-        -74px -14px 400px -78px rgba(108,51,201,0.75),
-        39px 54px 400px -78px rgba(51,201,84,0.75);
+  width: 60ch;
+  /* box-sizing: border-box; */
+  padding: 2rem;
+  border: none;
+  border-radius: var(--border-radius);
+  box-shadow:
+    -74px -14px 400px -78px rgba(108, 51, 201, 0.75),
+    39px 54px 400px -78px rgba(51, 201, 84, 0.75);
 }
 
 .modal::backdrop {
-    background: rgb(0 0 0 / .3);
+  background: rgb(0 0 0 / 0.3);
 }
 
 fieldset {
-    padding: 2rem;
-    border: var(--border);
-    border-radius: var(--border-radius);
-    background-color: var(--main-color);
+  padding: 2rem;
+  border: var(--border);
+  border-radius: var(--border-radius);
+  background-color: var(--main-color);
 }
 
 legend {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 .input-positioning {
-    display: grid;
-    grid-template: repeat(4, 1fr) / repeat(4, 1fr);
-    gap: 1.5rem;
+  display: grid;
+  grid-template: repeat(4, 1fr) / repeat(4, 1fr);
+  gap: 1.5rem;
 }
 
 .input-field {
-    min-width: 100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  min-width: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.input-field > label{
-    margin-bottom: 0.15rem;
+.input-field > label {
+  margin-bottom: 0.15rem;
 }
 
 .title-grid {
-    grid-column: 1 / 4;
-    grid-row: 1 / 2;
+  grid-column: 1 / 4;
+  grid-row: 1 / 2;
 }
 
 .must-play-grid {
-    grid-column: 1 / 3;
-    grid-row: 3 / 4;
+  grid-column: 1 / 3;
+  grid-row: 3 / 4;
 
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .genre-grid {
-    grid-column: 1 / 3;
-    grid-row: 2 / 3;
+  grid-column: 1 / 3;
+  grid-row: 2 / 3;
 }
 
 .released-grid {
-    grid-column: 4 / 5;
-    grid-row: 1 / 2; 
+  grid-column: 4 / 5;
+  grid-row: 1 / 2;
 }
 
 .progress-grid {
-    grid-column: 3 / 5;
-    grid-row: 2 / 3; 
+  grid-column: 3 / 5;
+  grid-row: 2 / 3;
 }
 
 .date-completed-grid {
-    grid-column: 2 / 4;
-    grid-row: 3 / 4;
+  grid-column: 2 / 4;
+  grid-row: 3 / 4;
 }
 
 .rate-grid {
-    grid-column: 4 / 5;
-    grid-row: 3 / 4;
+  grid-column: 4 / 5;
+  grid-row: 3 / 4;
 }
 
 .button-grid {
-    grid-column: 4 / 5;
-    grid-row: 4 / 5;
+  grid-column: 4 / 5;
+  grid-row: 4 / 5;
 }
 
 label > span {
-    color: red;
+  color: red;
 }
 
 .input-field > input {
-    padding: 0.2rem 0.4rem;
-    border: var(--border);
-    font-size: var(--font-size);
+  padding: 0.2rem 0.4rem;
+  border: var(--border);
+  font-size: var(--font-size);
 }
 
 input:focus,
 select:focus,
-input[type="checkbox"]:focus {
-    outline: none;
-    border: 1px solid rgb(48, 0, 180);
+input[type='checkbox']:focus {
+  outline: none;
+  border: 1px solid rgb(48, 0, 180);
 }
 
 input:valid:required,
 select:valid:required {
-    border: 1px solid rgb(0, 167, 0);
+  border: 1px solid rgb(0, 167, 0);
 }
 
 select {
-    width: 100%;
-    padding: 0.1rem 0.2rem;
-    border: var(--border);
-    border-radius: var(--border-radius);
-    font-family: PoppinsRegular;
-    font-size: var(--font-size);
-    background-color: var(--input-form-color);
-    cursor: pointer;
+  width: 100%;
+  padding: 0.1rem 0.2rem;
+  border: var(--border);
+  border-radius: var(--border-radius);
+  font-family: PoppinsRegular;
+  font-size: var(--font-size);
+  background-color: var(--input-form-color);
+  cursor: pointer;
 }
 
 select option {
-    font-family: PoppinsRegular, sans-serif;
+  font-family: PoppinsRegular, sans-serif;
 }
 
-input[type="checkbox"] {
-    appearance: none;
-    position: relative;
-    cursor: pointer;
-    margin: 0;
-    margin-right: 0.6rem;
-    padding: 0;
-    width: 1rem;
-    height: 1rem;
-    border: var(--border);
-    border-radius: 2px;
-    vertical-align: -2px;
-    color: black;
+input[type='checkbox'] {
+  appearance: none;
+  position: relative;
+  cursor: pointer;
+  margin: 0;
+  margin-right: 0.6rem;
+  padding: 0;
+  width: 1rem;
+  height: 1rem;
+  border: var(--border);
+  border-radius: 2px;
+  vertical-align: -2px;
+  color: black;
 }
 
-input[type="checkbox"]::before {
-    content: "✔";
-    position: absolute;
-    font-size: 1.1rem;
-    top: -0.3rem;
-    visibility: hidden;
+input[type='checkbox']::before {
+  content: '✔';
+  position: absolute;
+  font-size: 1.1rem;
+  top: -0.3rem;
+  visibility: hidden;
 }
 
-input[type="checkbox"]:checked::before {
-    visibility: visible;
+input[type='checkbox']:checked::before {
+  visibility: visible;
 }
 
 #date-completed {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 #rating {
-    width: 7ch;
+  width: 7ch;
 }
 
 .modal-btn-container {
-    display: flex;
-    align-items: flex-end;
+  display: flex;
+  align-items: flex-end;
 }
 
 .modal-btn-submit,
 .game-save {
-    background-color: var(--input-form-color);
-    padding: 0.6rem;
-    border: var(--border);
-    border-radius: var(--border-radius);
-    flex: 1;
+  background-color: var(--input-form-color);
+  padding: 0.6rem;
+  border: var(--border);
+  border-radius: var(--border-radius);
+  flex: 1;
 }
 
 .modal-btn-submit:hover,
 .game-save:hover {
-    background-color: var(--submit-btn-color);
+  background-color: var(--submit-btn-color);
 }

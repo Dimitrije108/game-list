@@ -5,7 +5,7 @@ module.exports = {
   entry: './src/index.js',
   plugins: [
     new HtmlWebpackPlugin({
-        template: './src/index.html',
+      template: './src/index.html',
     }),
   ],
   module: {
@@ -23,8 +23,8 @@ module.exports = {
         type: 'asset/resource',
       },
       {
-       test: /\.(woff|woff2|eot|ttf|otf)$/i,
-       type: 'asset/resource',
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
       },
     ],
   },
